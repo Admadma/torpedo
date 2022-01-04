@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:torpedo"
         mc:Ignorable="d"
-        Title="PlayerVsPlayer" Height="450" Width="800">
+        Title="Torpedo" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF3598F3" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Label Content="Player VS Player&#xD;&#xA;" HorizontalAlignment="Center" Margin="0,118,0,0" VerticalAlignment="Top"/>
 
     </Grid>
