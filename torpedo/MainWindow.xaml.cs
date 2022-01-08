@@ -26,9 +26,7 @@ namespace torpedo
         }
 
         private void onPvc(object sender, RoutedEventArgs e)
-        {
-            // TODO: visszaállítani a pvc játék indítását
-            
+        {  
             PlayerVsComputer pvcWindow = new PlayerVsComputer();
             pvcWindow.Show();
             this.Close();
