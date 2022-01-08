@@ -28,15 +28,11 @@ namespace torpedo
         private void onPvc(object sender, RoutedEventArgs e)
         {
             // TODO: visszaállítani a pvc játék indítását
-            /*
+            
             PlayerVsComputer pvcWindow = new PlayerVsComputer();
             pvcWindow.Show();
             this.Close();
-            */
             
-            PlayerVsComputerGame pvcgWindow = new PlayerVsComputerGame();
-            pvcgWindow.Show();
-            this.Close();
         }
         private void onPvp(object sender, RoutedEventArgs e)
         {

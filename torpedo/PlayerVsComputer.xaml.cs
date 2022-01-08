@@ -23,5 +23,14 @@ namespace torpedo
         {
             InitializeComponent();
         }
+
+        private void onPvcPlay(object sender, RoutedEventArgs e)
+        {
+         
+            PlayerVsComputerGame pvcgWindow = new PlayerVsComputerGame();
+            pvcgWindow.Show();
+            this.Close();
+            
+        }
     }
 }
