@@ -11,13 +11,21 @@ namespace torpedo.Models
         
         private int _gameWidth = 3;
         private int _gameHeight = 3;
-        //hit mindkét képernyő(player/opponent) ugyan azt ábrázolja majd: egy eltalált hajó
+        //hit mindkét képernyőn(player/opponent) ugyan azt ábrázolja majd: egy eltalált hajót
         public enum fieldState { Untouched, Hit, Miss };
-        //public fieldState[][] fieldStates { get; set; }
         public fieldState[,] fieldStates { get; set; }
+
+        public Position[] ship1 { get; set; }
+        public Position[] ship2 { get; set; }
+        public Position[] ship3 { get; set; }
+        public Position[] ship4 { get; set; }
+        public Position[] ship5 { get; set; }
+
+
 
         public GameModel()
         {
+            //initializing empty field
             fieldStates = new fieldState[_gameWidth, _gameHeight];
 
             for (int i = 0; i < _gameWidth; i++)
@@ -29,6 +37,13 @@ namespace torpedo.Models
             }
 
             fieldStates[0, 0] = fieldState.Hit;
+
+            //initialize ships
+            ship1 = new Position[2];
+            ship2 = new Position[3];
+            ship3 = new Position[3];
+            ship4 = new Position[4];
+            ship5 = new Position[5];
         }
 
         public fieldState getMyFieldState(Position position)
@@ -36,10 +51,14 @@ namespace torpedo.Models
             return fieldStates[position.X, position.Y];
         }
 
-        public void asd()
+        public bool createShipAtCoordinates(Position startPosition, Position endPosition)
         {
-            
+
+
+            return true;
         }
+
+
 
     }
 }

@@ -27,27 +27,25 @@ namespace torpedo.Views
             InitializeComponent();
             gameModel = new Models.GameModel();
         }
-        private void FooCommand(object sender, MouseEventArgs e)
-        {
-            Grid clickedGrid = (Grid)sender;
+        
 
-            switch (gameModel.getMyFieldState(new Position(Grid.GetColumn(clickedGrid), Grid.GetRow(clickedGrid)))) 
-            {
-                case GameModel.fieldState.Untouched:
-                    MessageBox.Show("untouched");
-                    clickedGrid.Background = Brushes.Gray;
-                    break;
-                case GameModel.fieldState.Hit:
-                    clickedGrid.Background = Brushes.Red;
-                    MessageBox.Show("hit");
-                    break;
-                case GameModel.fieldState.Miss:
-                    clickedGrid.Background = Brushes.Blue;
-                    MessageBox.Show("miss");
-                    break;
-                default:
-                    break;
-            }
+        public void colorAtCoordinate(int x, int y)
+        {
+            MessageBox.Show("problemo");
+            //PlayerBoardGrid.A1.Background = Brushes.Yellow;
+            /*
+             * Grid clickedGrid = (Grid)A1.Children
+                .Cast<UIElement>()
+                .First(e => Grid.GetColumn(e) == x && Grid.GetRow(e) == y);
+
+            MessageBox.Show($"{clickedGrid.Background}");
+            */
+
+            //PlayerBoardGrid.Children
+              //  .Cast<UIElement>()
+                //.First(e => Grid.GetColumn(e) == x && Grid.GetRow(e) == y)
+            //clickedGrid.Background = Brushes.Purple;
+
         }
 
 
