@@ -43,6 +43,7 @@ namespace torpedo
             this.Close();
         }
 
+        //TODO place this button at the game end screen
         private void onxmlSave(object sender, EventArgs e)
         {
             if (File.Exists("Scores.xml") == false)
