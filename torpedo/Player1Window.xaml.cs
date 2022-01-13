@@ -22,17 +22,25 @@ namespace torpedo
     {
 
         PvPViewModel vm;
+        TempWindow tmpW;
+
+        public void setParameters(PvPViewModel vm, TempWindow tmpW)//TODO: PvPViewModel helyett egy közös szülő osztály (pl GameViewModel) és ennek lehet majd értékül adni a leszármazottait: PvPViewModel/PvCViewModel
+        {
+            this.vm = vm;
+            this.tmpW = tmpW;
+        }
 
         private int _hits;
         private int _misses;
         private int _numberOfTurns;
 
 
-        public Player1Window(PvPViewModel vm)
+        public Player1Window(PvPViewModel vm, TempWindow tmpW)
         {
             InitializeComponent();
 
             this.vm = vm;
+            this.tmpW = tmpW;
             
             for (int i = 0; i < 10; i++)
             {
@@ -68,10 +76,15 @@ namespace torpedo
                         {
                             endGame();
                         }
+                        else
+                        {
+                            swapWindow();
+                        }
                     }
                     else
                     {
                         button.Background = Brushes.Blue;
+                        swapWindow();
                     }
 
                 }
@@ -84,12 +97,24 @@ namespace torpedo
             {
                 MessageBox.Show("Most nem a te köröd van!");
             }
-
-
-            //MessageBox.Show("button pressed");
         }
 
-        //KÖRÖK VÁLTÁSA KÉT ABLAK HELYETT: úgy mint a vm-et, egy közös window elemet is befecskendezek, a két nézetem csak wiev lesz nem külön ablak, kör végén bezárom, a közös ablak segítségével előhívom az újat
+        public void swapWindow()
+        {
+            tmpW.setParameters(this, null, vm);
+            tmpW.Show();
+            this.Hide();
+        }
+
+        public void endTurnClicked(object sender, RoutedEventArgs e)
+        {
+            //tmpW.setParameters(this, p2w, vm);
+            //tmpW.Show();
+            //this.Hide();
+            //tmpW = new TempWindow(this, p2w, vm);
+            //tmpW.Show();
+            //this.Close();
+        }
 
         public void endGame()
         {
