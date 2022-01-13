@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Web;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace torpedo
 {
@@ -26,17 +30,11 @@ namespace torpedo
         }
 
         private void onPvc(object sender, RoutedEventArgs e)
-        {
-            // TODO: visszaállítani a pvc játék indítását
-            /*
+        {  
             PlayerVsComputer pvcWindow = new PlayerVsComputer();
             pvcWindow.Show();
             this.Close();
-            */
             
-            PlayerVsComputerGame pvcgWindow = new PlayerVsComputerGame();
-            pvcgWindow.Show();
-            this.Close();
         }
         private void onPvp(object sender, RoutedEventArgs e)
         {
@@ -44,5 +42,44 @@ namespace torpedo
             pvpWindow.Show();
             this.Close();
         }
+
+        //TODO place this button at the game end screen
+        private void onxmlSave(object sender, EventArgs e)
+        {
+            if (File.Exists("Scores.xml") == false)
+            {
+                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+                xmlWriterSettings.Indent = true;
+                xmlWriterSettings.NewLineOnAttributes = true;
+                using (XmlWriter xmlWriter = XmlWriter.Create("Scores.xml", xmlWriterSettings))
+                {
+                    xmlWriter.WriteStartDocument();
+                    xmlWriter.WriteStartElement("Scores");
+                    xmlWriter.WriteStartElement("Game");
+                    xmlWriter.WriteElementString("PlayerOne", "Asd");
+                    xmlWriter.WriteElementString("PlayerTwo", "Das");
+                    xmlWriter.WriteElementString("Result", "Asd" + " Won");
+                    xmlWriter.WriteEndElement();
+                    xmlWriter.WriteEndElement();
+                    xmlWriter.WriteEndDocument();
+                    xmlWriter.Flush();
+                    xmlWriter.Close();
+                }
+            }
+            else
+            {
+                XDocument xDocument = XDocument.Load("Scores.xml");
+                XElement root = xDocument.Element("Scores");
+                IEnumerable<XElement> rows = root.Descendants("Game");
+                XElement firstRow = rows.First();
+                firstRow.AddBeforeSelf(
+                   new XElement("Game",
+                   new XElement("PlayerOne", "Abc"),
+                   new XElement("PlayerTwo", "Def"),
+                   new XElement("Result", "Def" + " Won")));
+                xDocument.Save("Scores.xml");
+            }
+        }
+
     }
 }
