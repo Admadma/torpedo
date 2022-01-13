@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:torpedo"
+        xmlns:viewModel="clr-namespace:torpedo.ViewModels"
         mc:Ignorable="d"
         Title="Torpedo" Height="700" Width="1200">
+    <!--
+    <Window.DataContext>
+        <viewModel:PvPViewModel/>
+    </Window.DataContext>
+    -->
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -15,7 +21,7 @@
         </Grid.Background>
         <Label Content="Player VS Player&#xD;&#xA;" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"  FontSize="36" FontWeight="Bold" Foreground="White"/>
         <Grid Margin="0,63,0,0">
-            <Button Content="Play&#xD;&#xA;" HorizontalAlignment="Center" Margin="0,493,0,0" VerticalAlignment="Top" Height="70" Width="200" FontSize="24" FontWeight="Bold">
+            <Button Content="Play&#xD;&#xA;" HorizontalAlignment="Center" Margin="0,493,0,0" VerticalAlignment="Top" Height="70" Width="200" FontSize="24" FontWeight="Bold" Command="{Binding CreatePlayers}" Click="onPlay">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black" Offset="1"/>
@@ -23,8 +29,8 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <TextBox HorizontalAlignment="Left" Margin="100,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="50"/>
-            <TextBox HorizontalAlignment="Left" Margin="800,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="50"/>
+            <TextBox Name="Player1" HorizontalAlignment="Left" Margin="100,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="50"/>
+            <TextBox Name="Player2" HorizontalAlignment="Left" Margin="800,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="50"/>
             <Label Content=" VS &#xA;" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="36" FontWeight="Bold" Foreground="White" Height="50"/>
             <Label Content="Player 1&#xA;" HorizontalAlignment="Left" Margin="177,226,0,0" VerticalAlignment="Top"  FontSize="36" FontWeight="Bold" Foreground="White" Height="55"/>
             <Label Content="Player 2&#xA;" HorizontalAlignment="Left" Margin="877,226,0,0" VerticalAlignment="Top"  FontSize="36" FontWeight="Bold" Foreground="White" Height="55"/>
