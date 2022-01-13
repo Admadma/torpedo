@@ -54,7 +54,6 @@ namespace torpedo
                     Player1Attacks.Children.Add(button); 
                 }
             }
-
         }
 
         public void buttonClicked(object sender, RoutedEventArgs e)
@@ -72,19 +71,12 @@ namespace torpedo
                         _hits = vm.getHits(0);
                         player1Score.Text = _hits.ToString();
                         button.Background = Brushes.Red;
-                        if (vm.checkIfGameIsOver())
-                        {
-                            endGame();
-                        }
-                        else
-                        {
-                            swapWindow();
-                        }
+                        endTurn();
                     }
                     else
                     {
                         button.Background = Brushes.Blue;
-                        swapWindow();
+                        endTurn();
                     }
 
                 }
@@ -99,11 +91,11 @@ namespace torpedo
             }
         }
 
-        public void swapWindow()
+        public void endTurn()
         {
-            tmpW.setParameters(this, null, vm);
-            tmpW.Show();
             this.Hide();
+            tmpW.setParameters(this, null, vm);
+            tmpW.isGameOver(0);
         }
 
         public void endTurnClicked(object sender, RoutedEventArgs e)

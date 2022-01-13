@@ -37,26 +37,19 @@ namespace torpedo
             {
                 ViewModels.PvPViewModel vm = new ViewModels.PvPViewModel(Player1.Text, Player2.Text);
 
-                //Player1Window p1Window = new Player1Window(vm);
-                //Player2Window p2Window = new Player2Window(vm);
-                
                 TempWindow tmpW = new TempWindow();
-
                 Player1Window p1w = new Player1Window(vm, tmpW);
                 Player2Window p2w = new Player2Window(vm, tmpW);
-                //p1w = new Player1Window(vm, p2w, tmpW);
 
                 tmpW = new TempWindow(p1w, p2w, vm);
+
+                p1w.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                p2w.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                tmpW.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
 
                 tmpW.Show();
                 this.Close();
-
-                //p1Window.Show();
-                //p2Window.Show();
-
-                //if (p1Window.IsVisible)
-                //this.Close();
             }
             else
             {

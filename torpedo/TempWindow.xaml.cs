@@ -24,14 +24,14 @@ namespace torpedo
         Player2Window p2w;
         PvPViewModel vm;
 
-        public void setParameters(Player1Window p1w, Player2Window p2w, PvPViewModel vm)//TODO: PvPViewModel helyett egy közös szülő osztály (pl GameViewModel) és ennek lehet majd értékül adni a leszármazottait: PvPViewModel/PvCViewModel
+        public void setParameters(Player1Window p1w, Player2Window p2w, PvPViewModel vm)
         {
-            if(p1w is not null)
+            if (p1w is not null)
             {
                 this.p1w = p1w;
 
             }
-            if(p2w is not null)
+            if (p2w is not null)
             {
                 this.p2w = p2w;
 
@@ -46,14 +46,14 @@ namespace torpedo
             InitializeComponent();
         }
 
-        public TempWindow(Player1Window p1w, Player2Window p2w, PvPViewModel vm)//TODO: PvPViewModel helyett egy közös szülő osztály (pl GameViewModel) és ennek lehet majd értékül adni a leszármazottait: PvPViewModel/PvCViewModel
+        public TempWindow(Player1Window p1w, Player2Window p2w, PvPViewModel vm)
         {
             InitializeComponent();
             this.p1w = p1w;
             this.p2w = p2w;
             this.vm = vm;
 
-            
+
         }
 
 
@@ -63,16 +63,41 @@ namespace torpedo
 
             if (currentPlayer == 0)
             {
-                //MessageBox.Show($"the current player is {currentPlayer}");
+                MessageBox.Show($"Player1: {p1w} \n Player2: {p2w}");
                 p1w.setParameters(vm, this);
                 p1w.Show();
                 this.Hide();
-            } 
+            }
             else if (currentPlayer == 1)
             {
+                MessageBox.Show($"Player1: {p1w} \n Player2: {p2w}");
                 p2w.setParameters(vm, this);
                 p2w.Show();
                 this.Hide();
+            }
+        }
+
+        public void isGameOver(int playerID)
+        {
+            //if (vm.checkIfGameIsOver())
+            if (false)
+            {
+                if(playerID == 0)
+                {
+                    MessageBox.Show("Player1 won");
+                }
+                else if (playerID == 1)
+                {
+                    MessageBox.Show("Player2 won");
+                }
+
+                p1w.Close();
+                p2w.Close();
+                this.Close();
+            }
+            else
+            {
+                this.Show();
             }
         }
     }

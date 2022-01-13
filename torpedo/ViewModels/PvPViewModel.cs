@@ -60,6 +60,7 @@ namespace torpedo.ViewModels
             shipCoordinatesPlayer2[3] = new int[] { 2, 4 };
             shipCoordinatesPlayer2[4] = new int[] { 2, 5 };
 
+            _p1Hits = 100;      //TODO: ezt kitörölni
         }
 
         public int getHits(int player)
