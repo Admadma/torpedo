@@ -15,6 +15,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Data;
 using System.IO;
+using torpedo.ViewModels;
 
 namespace torpedo
 {
@@ -24,6 +25,12 @@ namespace torpedo
     public partial class PlayerVsPlayerGO : Window
     {
         //TODO get real playernames and winner
+
+        PvPViewModel vm;
+        
+        string Playerone = "playerone";
+        string Playertwo = "playertwo";
+        
         string Winner = "winner";
         string tPlayerone = "a";
         string tPlayertwo = "b";
@@ -33,8 +40,16 @@ namespace torpedo
             InitializeComponent();
         }
 
+        public PlayerVsPlayerGO(PvPViewModel vm)
+        {
+            InitializeComponent();
+            this.vm = vm;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show(vm.winner);
+            /*
             if (File.Exists("Scores.xml") == false)
             {
                 XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
@@ -67,7 +82,7 @@ namespace torpedo
                    new XElement("PlayerTwo", tPlayertwo),
                    new XElement("Result", Winner + " Won")));
                 xDocument.Save("Scores.xml");
-            }
+            }*/
         }
     }
 }
