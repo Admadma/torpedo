@@ -25,6 +25,9 @@ namespace torpedo
     /// </summary>
     public partial class MainWindow : Window
     {
+        string Playerone = "playerone";
+        string Playertwo = "playertwo";
+        string Winner = "playertwo";
         public MainWindow()
         {
             InitializeComponent();
@@ -57,9 +60,9 @@ namespace torpedo
                     xmlWriter.WriteStartDocument();
                     xmlWriter.WriteStartElement("Scores");
                     xmlWriter.WriteStartElement("Game");
-                    xmlWriter.WriteElementString("PlayerOne", "Asd");
-                    xmlWriter.WriteElementString("PlayerTwo", "Das");
-                    xmlWriter.WriteElementString("Result", "Asd" + " Won");
+                    xmlWriter.WriteElementString("PlayerOne", Playerone);
+                    xmlWriter.WriteElementString("PlayerTwo", Playertwo);
+                    xmlWriter.WriteElementString("Result", Winner + " Won");
                     xmlWriter.WriteEndElement();
                     xmlWriter.WriteEndElement();
                     xmlWriter.WriteEndDocument();
@@ -75,9 +78,9 @@ namespace torpedo
                 XElement firstRow = rows.First();
                 firstRow.AddBeforeSelf(
                    new XElement("Game",
-                   new XElement("PlayerOne", "Abc"),
-                   new XElement("PlayerTwo", "Def"),
-                   new XElement("Result", "Def" + " Won")));
+                   new XElement("PlayerOne", Playerone),
+                   new XElement("PlayerTwo", Playertwo),
+                   new XElement("Result", Winner + " Won")));
                 xDocument.Save("Scores.xml");
             }
         }
