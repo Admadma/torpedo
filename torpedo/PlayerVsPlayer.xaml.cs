@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace torpedo
 {
@@ -25,6 +26,9 @@ namespace torpedo
             InitializeComponent();
         }
 
+        public string Playerone { get; private set; }
+        public string Playertwo { get; private set; }
+
         private void onPlay(object sender, RoutedEventArgs e)
         {
             //TODO: todo
@@ -32,8 +36,25 @@ namespace torpedo
             //ezeket később ki kell majd törölni
             Player1.Text = "asd";
             Player2.Text = "baaaaad";
-            //if (!string.IsNullOrWhiteSpace(Player1.Text) && !string.IsNullOrWhiteSpace(Player2.Text))     
-            if(true)
+
+           
+            Regex regex = new Regex(@"[^a-zA-Z0-9$]");
+            if (regex.IsMatch(Player1.Text) || string.IsNullOrWhiteSpace(Player1.Text))
+            {
+                MessageBox.Show("Player1 name is invalid");
+                return;
+            }
+
+            if (regex.IsMatch(Player2.Text) || string.IsNullOrWhiteSpace(Player2.Text))
+            {
+                MessageBox.Show("Player2 name is invalid");
+                return;
+            }
+
+            Playerone = Player1.Text;
+            Playertwo = Player2.Text;
+
+            if (true)
             {
                 ViewModels.PvPViewModel vm = new ViewModels.PvPViewModel(Player1.Text, Player2.Text);
 
@@ -51,12 +72,6 @@ namespace torpedo
                 tmpW.Show();
                 this.Close();
             }
-            else
-            {
-                MessageBox.Show("Érvénytelen név!");
-            }
-            
-
             
         }
     }
