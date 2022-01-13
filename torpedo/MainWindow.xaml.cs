@@ -25,9 +25,6 @@ namespace torpedo
     /// </summary>
     public partial class MainWindow : Window
     {
-        string Playerone = "playerone";
-        string Playertwo = "playertwo";
-        string Winner = "playertwo";
         public MainWindow()
         {
             InitializeComponent();
@@ -46,45 +43,6 @@ namespace torpedo
             pvpWindow.Show();
             this.Close();
         }
-
-        //TODO place this button at the game end screen
-        private void onxmlSave(object sender, EventArgs e)
-        {
-            if (File.Exists("Scores.xml") == false)
-            {
-                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
-                xmlWriterSettings.Indent = true;
-                xmlWriterSettings.NewLineOnAttributes = true;
-                using (XmlWriter xmlWriter = XmlWriter.Create("Scores.xml", xmlWriterSettings))
-                {
-                    xmlWriter.WriteStartDocument();
-                    xmlWriter.WriteStartElement("Scores");
-                    xmlWriter.WriteStartElement("Game");
-                    xmlWriter.WriteElementString("PlayerOne", Playerone);
-                    xmlWriter.WriteElementString("PlayerTwo", Playertwo);
-                    xmlWriter.WriteElementString("Result", Winner + " Won");
-                    xmlWriter.WriteEndElement();
-                    xmlWriter.WriteEndElement();
-                    xmlWriter.WriteEndDocument();
-                    xmlWriter.Flush();
-                    xmlWriter.Close();
-                }
-            }
-            else
-            {
-                XDocument xDocument = XDocument.Load("Scores.xml");
-                XElement root = xDocument.Element("Scores");
-                IEnumerable<XElement> rows = root.Descendants("Game");
-                XElement firstRow = rows.First();
-                firstRow.AddBeforeSelf(
-                   new XElement("Game",
-                   new XElement("PlayerOne", Playerone),
-                   new XElement("PlayerTwo", Playertwo),
-                   new XElement("Result", Winner + " Won")));
-                xDocument.Save("Scores.xml");
-            }
-        }
-
         private void onScoreboard(object sender, RoutedEventArgs e)
         {
             DataSet dataSet = new DataSet();

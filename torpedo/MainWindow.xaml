@@ -31,7 +31,6 @@
                 </Button.Background>
             </Button>
             <Label Content="Torpedo Game" HorizontalAlignment="Center" Height="75" VerticalAlignment="Top" Width="340" FontSize="48" FontWeight="Bold" Margin="0,10,0,0"/>
-            <Button x:Name="xmlSave" Content="save xml" HorizontalAlignment="Left" Margin="114,241,0,0" VerticalAlignment="Top" Height="89" Width="194" Click="onxmlSave"/>
             <Button x:Name="scoreboard" Content="Scoreboard" HorizontalAlignment="Left" Margin="114,442,0,0" VerticalAlignment="Top" Height="84" Width="194" Click="onScoreboard" FontSize="14" FontWeight="Bold" >
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
