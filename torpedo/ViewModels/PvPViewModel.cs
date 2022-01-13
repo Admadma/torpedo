@@ -24,7 +24,7 @@ namespace torpedo.ViewModels
         private bool[,] wasCoordinateAlreadyAttackedByPlayer1 = new bool[10, 10];
         private bool[,] wasCoordinateAlreadyAttackedByPlayer2 = new bool[10, 10];
 
-        private static int _numberOfShipCoordinates = 5;        //TODO: 1 helyére majd 17 kell (összesen annyi hajó koordináta van)
+        private static int _numberOfShipCoordinates = 5;        //TODO: 5 helyére majd 17 kell (összesen annyi hajó koordináta van)
         private int[][] shipCoordinatesPlayer1 = new int[_numberOfShipCoordinates][];       
         private int[][] shipCoordinatesPlayer2 = new int[_numberOfShipCoordinates][];
 
@@ -140,14 +140,21 @@ namespace torpedo.ViewModels
             if(_p1Hits >= _numberOfShipCoordinates)
             {
                 //TODO: game over p1 won
+                exportScore();
                 return true;
             }
             else if(_p2Hits >= _numberOfShipCoordinates)
             {
                 //TODO: game over p2 won
+                exportScore();
                 return true;
             }
             return false;
+        }
+
+        private void exportScore()
+        {
+            //eredmény kiiratása file-ba
         }
 
 
