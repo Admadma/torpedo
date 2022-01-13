@@ -68,12 +68,12 @@ namespace torpedo
                         //_hits = vm.getHits(true);
                         //player1Score.Text = _hits.ToString();
                         button.Background = Brushes.Red;
-                        swapWindow();
+                        endTurn();
                     }
                     else
                     {
                         button.Background = Brushes.Blue;
-                        swapWindow();
+                        endTurn();
                     }
                 }
                 else
@@ -87,11 +87,11 @@ namespace torpedo
             }
         }
 
-        public void swapWindow()
+        public void endTurn()
         {
-            tmpW.setParameters(null, this, vm);
-            tmpW.Show();
             this.Hide();
+            tmpW.setParameters(null, this, vm);
+            tmpW.isGameOver(1);
         }
     }
 }
