@@ -36,6 +36,12 @@ namespace torpedo
             if(true)
             {
                 ViewModels.PvPViewModel vm = new ViewModels.PvPViewModel(Player1.Text, Player2.Text);
+                PlaceShips placeShips = new PlaceShips(vm);
+
+                placeShips.Show();
+                this.Close();
+                /*
+                ViewModels.PvPViewModel vm = new ViewModels.PvPViewModel(Player1.Text, Player2.Text);
 
                 TempWindow tmpW = new TempWindow();
                 Player1Window p1w = new Player1Window(vm, tmpW);
@@ -50,6 +56,7 @@ namespace torpedo
 
                 tmpW.Show();
                 this.Close();
+                */
             }
             else
             {
