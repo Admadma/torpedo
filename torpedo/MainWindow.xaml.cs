@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
 using System.Xml.Linq;
+using System.Data;
 
 namespace torpedo
 {
@@ -81,5 +82,12 @@ namespace torpedo
             }
         }
 
+        private void onScoreboard(object sender, RoutedEventArgs e)
+        {
+            DataSet dataSet = new DataSet();
+            dataSet.ReadXml("Scores.xml");
+            dataGrid1.ItemsSource = dataSet.Tables[0].DefaultView;
+            dataGrid1.Visibility = Visibility.Visible;
+        }
     }
 }

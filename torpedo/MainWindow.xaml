@@ -31,8 +31,23 @@
                 </Button.Background>
             </Button>
             <Label Content="Torpedo Game" HorizontalAlignment="Center" Height="75" VerticalAlignment="Top" Width="340" FontSize="48" FontWeight="Bold" Margin="0,10,0,0"/>
-            <Button x:Name="xmlSave" Content="save xml" HorizontalAlignment="Left" Margin="90,241,0,0" VerticalAlignment="Top" Height="89" Width="194" Click="onxmlSave"/>
-            <Button x:Name="xmlLoad" Content="load xml" HorizontalAlignment="Left" Margin="90,386,0,0" VerticalAlignment="Top" Height="84" Width="194" />
+            <Button x:Name="xmlSave" Content="save xml" HorizontalAlignment="Left" Margin="114,241,0,0" VerticalAlignment="Top" Height="89" Width="194" Click="onxmlSave"/>
+            <Button x:Name="scoreboard" Content="Scoreboard" HorizontalAlignment="Left" Margin="114,442,0,0" VerticalAlignment="Top" Height="84" Width="194" Click="onScoreboard" FontSize="14" FontWeight="Bold" >
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FF3598F3" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <DataGrid x:Name="dataGrid1" HorizontalAlignment="Left" Height="595" Margin="802,35,0,0" VerticalAlignment="Top" Width="388" Visibility="Hidden" >
+                <DataGrid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="#FF3598F3" Offset="0"/>
+                    </LinearGradientBrush>
+                </DataGrid.Background>
+            </DataGrid>
         </Grid>
 
     </Grid>

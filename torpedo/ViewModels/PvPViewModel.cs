@@ -1,10 +1,13 @@
 ﻿using Prism.Commands;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using torpedo.Models;
+using System.Xml;
+using System.Xml.Linq;
 
 
 namespace torpedo.ViewModels
@@ -155,8 +158,42 @@ namespace torpedo.ViewModels
         private void exportScore()
         {
             //eredmény kiiratása file-ba
+            /*
+            if (File.Exists("Scores.xml") == false)
+            {
+                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+                xmlWriterSettings.Indent = true;
+                xmlWriterSettings.NewLineOnAttributes = true;
+                using (XmlWriter xmlWriter = XmlWriter.Create("Scores.xml", xmlWriterSettings))
+                {
+                    xmlWriter.WriteStartDocument();
+                    xmlWriter.WriteStartElement("Scores");
+                    xmlWriter.WriteStartElement("Game");
+                    xmlWriter.WriteElementString("PlayerOne", "Asd");
+                    xmlWriter.WriteElementString("PlayerTwo", "Das");
+                    xmlWriter.WriteElementString("Result", "Asd" + " Won");
+                    xmlWriter.WriteEndElement();
+                    xmlWriter.WriteEndElement();
+                    xmlWriter.WriteEndDocument();
+                    xmlWriter.Flush();
+                    xmlWriter.Close();
+                }
+            }
+            else
+            {
+                XDocument xDocument = XDocument.Load("Scores.xml");
+                XElement root = xDocument.Element("Scores");
+                IEnumerable<XElement> rows = root.Descendants("Game");
+                XElement firstRow = rows.First();
+                firstRow.AddBeforeSelf(
+                   new XElement("Game",
+                   new XElement("PlayerOne", "Abc"),
+                   new XElement("PlayerTwo", "Def"),
+                   new XElement("Result", "Def" + " Won")));
+                xDocument.Save("Scores.xml");
+            }*/
         }
-
+            
 
 
     }
