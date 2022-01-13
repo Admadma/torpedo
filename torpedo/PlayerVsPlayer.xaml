@@ -29,8 +29,8 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <TextBox Name="Player1" HorizontalAlignment="Left" Margin="100,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="50"/>
-            <TextBox Name="Player2" HorizontalAlignment="Left" Margin="800,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="50"/>
+            <TextBox Name="Player1" HorizontalAlignment="Left" TextWrapping="Wrap" Width="300" VerticalContentAlignment = "Center" TextAlignment="Center" FontSize="16" FontWeight="Bold" Margin="100,286,0,254"/>
+            <TextBox Name="Player2" HorizontalAlignment="Left" TextWrapping="Wrap" Width="300" VerticalContentAlignment = "Center" TextAlignment="Center" FontSize="16" FontWeight="Bold" Margin="800,286,0,254"/>
             <Label Content=" VS &#xA;" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="36" FontWeight="Bold" Foreground="White" Height="50"/>
             <Label Content="Player 1&#xA;" HorizontalAlignment="Left" Margin="177,226,0,0" VerticalAlignment="Top"  FontSize="36" FontWeight="Bold" Foreground="White" Height="55"/>
             <Label Content="Player 2&#xA;" HorizontalAlignment="Left" Margin="877,226,0,0" VerticalAlignment="Top"  FontSize="36" FontWeight="Bold" Foreground="White" Height="55"/>
