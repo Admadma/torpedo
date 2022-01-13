@@ -108,8 +108,6 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Border Grid.Row="0"  Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="1">
-                        </Border>
                     </Grid>
                 </Grid>
             </Grid>
@@ -124,8 +122,6 @@
                 <TextBlock Text="Score: " TextWrapping="Wrap" Margin="5"/>
                 <TextBlock x:Name="player1Score" TextWrapping="Wrap" Margin="5"/>
             </StackPanel>
-
-            <Button Grid.Row="1" Click="endTurnClicked">End my turn</Button>
         </Grid>
 
     </Grid>

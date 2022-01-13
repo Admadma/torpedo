@@ -66,6 +66,32 @@ namespace torpedo.ViewModels
             _p1Hits = 100;      //TODO: ezt kitörölni
         }
 
+        public bool isthereShipAtCoordinate(int x, int y, int playerID)
+        {
+
+            if (playerID == 0) {
+                for (int i = 0; i < _numberOfShipCoordinates; i++)
+                {
+                    if (shipCoordinatesPlayer1[i][0] == x && shipCoordinatesPlayer1[i][1] == y)
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if(playerID == 1)
+            {
+                for (int i = 0; i < _numberOfShipCoordinates; i++)
+                {
+                    if (shipCoordinatesPlayer2[i][0] == x && shipCoordinatesPlayer2[i][1] == y)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public int getHits(int player)
         {
             if (player == 0)

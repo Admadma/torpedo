@@ -44,7 +44,6 @@ namespace torpedo
                     Button button = new Button();
                     Grid.SetRow(button, i);
                     Grid.SetColumn(button, j);
-                    button.Name = "buttonName";
                     button.Click += new RoutedEventHandler(buttonClicked);
                     Player2Attacks.Children.Add(button);
                 }
