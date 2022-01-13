@@ -23,9 +23,11 @@ namespace torpedo
     /// </summary>
     public partial class PlayerVsPlayerGO : Window
     {
-        string Playerone = "playerone";
-        string Playertwo = "playertwo";
+        //TODO get real playernames and winner
         string Winner = "winner";
+        string tPlayerone = "a";
+        string tPlayertwo = "b";
+
         public PlayerVsPlayerGO()
         {
             InitializeComponent();
@@ -43,8 +45,8 @@ namespace torpedo
                     xmlWriter.WriteStartDocument();
                     xmlWriter.WriteStartElement("Scores");
                     xmlWriter.WriteStartElement("Game");
-                    xmlWriter.WriteElementString("PlayerOne", Playerone);
-                    xmlWriter.WriteElementString("PlayerTwo", Playertwo);
+                    xmlWriter.WriteElementString("PlayerOne", tPlayerone);
+                    xmlWriter.WriteElementString("PlayerTwo", tPlayertwo);
                     xmlWriter.WriteElementString("Result", Winner + " Won");
                     xmlWriter.WriteEndElement();
                     xmlWriter.WriteEndElement();
@@ -61,8 +63,8 @@ namespace torpedo
                 XElement firstRow = rows.First();
                 firstRow.AddBeforeSelf(
                    new XElement("Game",
-                   new XElement("PlayerOne", Playerone),
-                   new XElement("PlayerTwo", Playertwo),
+                   new XElement("PlayerOne", tPlayerone),
+                   new XElement("PlayerTwo", tPlayertwo),
                    new XElement("Result", Winner + " Won")));
                 xDocument.Save("Scores.xml");
             }
