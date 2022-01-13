@@ -82,6 +82,11 @@ namespace torpedo.ViewModels
             return playerNumber == currentPlayer;
         }
 
+        public int getCurrentPlayer()
+        {
+            return currentPlayer;
+        }
+
         public bool isUntouchedCoordinate(int x, int y)
         {
             if (currentPlayer == 0)
