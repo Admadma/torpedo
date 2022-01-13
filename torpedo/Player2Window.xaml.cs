@@ -22,12 +22,20 @@ namespace torpedo
     {
 
         PvPViewModel vm;
+        TempWindow tmpW;
 
-        public Player2Window(PvPViewModel vm)
+        public void setParameters(PvPViewModel vm, TempWindow tmpW)//TODO: PvPViewModel helyett egy közös szülő osztály (pl GameViewModel) és ennek lehet majd értékül adni a leszármazottait: PvPViewModel/PvCViewModel
+        {
+            this.vm = vm;
+            this.tmpW = tmpW;
+        }
+
+        public Player2Window(PvPViewModel vm, TempWindow tmpW)
         {
             InitializeComponent();
 
             this.vm = vm;
+            this.tmpW = tmpW;
 
             for (int i = 0; i < 10; i++)
             {
@@ -60,12 +68,12 @@ namespace torpedo
                         //_hits = vm.getHits(true);
                         //player1Score.Text = _hits.ToString();
                         button.Background = Brushes.Red;
-
-                        //TODO: end turn    player2 köre következik
+                        swapWindow();
                     }
                     else
                     {
                         button.Background = Brushes.Blue;
+                        swapWindow();
                     }
                 }
                 else
@@ -77,9 +85,13 @@ namespace torpedo
             {
                 MessageBox.Show("Most nem a te köröd van!");
             }
+        }
 
-
-            //MessageBox.Show("button pressed");
+        public void swapWindow()
+        {
+            tmpW.setParameters(null, this, vm);
+            tmpW.Show();
+            this.Hide();
         }
     }
 }

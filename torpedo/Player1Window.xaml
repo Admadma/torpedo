@@ -116,10 +116,16 @@
         </Grid>
 
         <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <StackPanel Background="white" Orientation="Horizontal">
                 <TextBlock Text="Score: " TextWrapping="Wrap" Margin="5"/>
                 <TextBlock x:Name="player1Score" TextWrapping="Wrap" Margin="5"/>
             </StackPanel>
+
+            <Button Grid.Row="1" Click="endTurnClicked">End my turn</Button>
         </Grid>
 
     </Grid>
