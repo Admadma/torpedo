@@ -24,10 +24,14 @@ namespace torpedo
 
         PvPViewModel vm;
 
+        private int currentPlayerID = 0;
+
         private int startX = -1;
         private int startY = -1;
         private int endX = -1;
         private int endY = -1;
+
+        private int currentShipsLength;
 
         private int[][] shipCoordinates;
 
@@ -96,41 +100,96 @@ namespace torpedo
 
         private bool canShipPlacedThere()
         {
-            if (startX == endX || startY == endY)        //Ha egy tengely egyenlő akkor biztos egy síkban vannak //NEM lehet átlós hajó
+            if (startX == endX && startY == endY)
             {
-                MessageBox.Show("good");
-                if (areShipsColliding())
-                {
+                //TODO: kezdőmezőre kattintottam => visszavonni a kezdőmezőt
 
-                }
             }
             else
             {
-                MessageBox.Show("bad");
-                return false;
+                if (startX == endX || startY == endY)        //Ha egy tengely egyenlő akkor biztos egy síkban vannak //NEM lehet átlós hajó
+                {
+                    if (!areShipsColliding())
+                    {
+                        MessageBox.Show("nincs ütközés");
+                        //if() max length
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ez ütközne egy másik hajóval. Tedd máshova!");
+                        return false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Hajókat csak függőlegesen vagy vízszintesen lehet elhelyezni!");
+                    return false;
+                }
             }
-            return true;
+            return false;
         }
 
-        private void getNewShipCoordinates()
+        private int[,] getNewShipCoordinates()
         {
-            int realStartX;
-            int realStartY;
-            int realEndX;
-            int realEndY;
-            ArrayList shipParts = new ArrayList();
+            int[,] shipParts;
 
-            //x1 -től kezdve xn-ig minden értéket hozzáadni
-            //ugyanez y-al
-            shipParts.Add(new int[] { 1, 1 });
+            if (startX == endX)
+            {
+                if(startY > endY)
+                {
+                    int tmp = endY;
+                    endY = startY;
+                    startY = tmp;
+                }
+
+                currentShipsLength = endY - startY;
+
+                shipParts = new int[currentShipsLength, 2];
+
+                for(int i = 0; i < currentShipsLength; i++)
+                {
+                    shipParts[i, 0] = startX;
+                    shipParts[i, 1] = startY + i ;
+                }
+
+                return shipParts;
+            }
+            else  //implicit startY == endY
+            {
+                if (startX > endX)
+                {
+                    int tmp = endX;
+                    endX = startX;
+                    startX = tmp;
+                }
+                currentShipsLength = endX - startX;
+
+                shipParts = new int[currentShipsLength, 2];
+
+                for (int i = 0; i < currentShipsLength; i++)
+                {
+                    shipParts[i, 0] = startX + i;
+                    shipParts[i, 1] = startY;
+                }
+
+                return shipParts;
+            }
+
         }
 
         private bool areShipsColliding()
         {
-            //TODO: vm-ből lekérni az összes hajó koordinátáját, összvetni
-            //kezdő és végpont között minden egyes koordinátát vizsgálni
+            int[,] shipParts = getNewShipCoordinates();
 
-            return true;
+            for(int i = 0; i < currentShipsLength; i++)
+            {
+                if(vm.isthereShipAtCoordinate(shipParts[i, 0], shipParts[i, 1], currentPlayerID))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -59,12 +59,12 @@ namespace torpedo
                 ViewModels.PvPViewModel vm = new ViewModels.PvPViewModel(Player1.Text, Player2.Text);
                 vm.player1Name = Player1.Text;
                 vm.player2Name = Player2.Text;
-                //PlaceShips placeShips = new PlaceShips(vm);
+                PlaceShips placeShips = new PlaceShips(vm);
 
-                //placeShips.Show();
-                //this.Close();
+                placeShips.Show();
+                this.Close();
                 
-
+                /*
                 TempWindow tmpW = new TempWindow();
                 Player1Window p1w = new Player1Window(vm, tmpW);
                 Player2Window p2w = new Player2Window(vm, tmpW);
@@ -78,6 +78,7 @@ namespace torpedo
 
                 tmpW.Show();
                 this.Close();
+                */
                 
             }
             
