@@ -15,6 +15,15 @@ namespace torpedo.ViewModels
     public class PvPViewModel
     {
 
+        public string player1Name;
+        public string player2Name;
+        public string winner;
+
+
+
+
+
+
         public string Asd { get; set; }
 
         public int aasd { get; set; }
@@ -175,13 +184,15 @@ namespace torpedo.ViewModels
             if(_p1Hits >= _numberOfShipCoordinates)
             {
                 //TODO: game over p1 won
-                exportScore();
+                winner = player1Name;
+                //exportScore();
                 return true;
             }
             else if(_p2Hits >= _numberOfShipCoordinates)
             {
                 //TODO: game over p2 won
-                exportScore();
+                winner = player2Name;
+                //exportScore();
                 return true;
             }
             return false;

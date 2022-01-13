@@ -79,16 +79,20 @@ namespace torpedo
 
         public void isGameOver(int playerID)
         {
-            //if (vm.checkIfGameIsOver())
-            if (false)
+            if (vm.checkIfGameIsOver())
+            //if (false)
             {
                 if(playerID == 0)
                 {
-                    MessageBox.Show("Player1 won");
+                    //MessageBox.Show("Player1 won");
+                    PlayerVsPlayerGO pvpGO = new PlayerVsPlayerGO(vm);
+                    pvpGO.Show();
                 }
                 else if (playerID == 1)
                 {
-                    MessageBox.Show("Player2 won");
+                    //MessageBox.Show("Player2 won");
+                    PlayerVsPlayerGO pvpGO = new PlayerVsPlayerGO(vm);
+                    pvpGO.Show();
                 }
 
                 p1w.Close();
