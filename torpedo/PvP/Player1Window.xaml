@@ -118,10 +118,38 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel Background="white" Orientation="Horizontal">
-                <TextBlock Text="Score: " TextWrapping="Wrap" Margin="5"/>
-                <TextBlock x:Name="player1Score" TextWrapping="Wrap" Margin="5"/>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="Találatok: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="player1Score" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="Körök száma: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="numberOfTurns" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <TextBlock>Hajóim:</TextBlock>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="1-es hajó: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="ship1State" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="2-es hajó: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="ship2State" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="3-es hajó: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="ship3State" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="4-es hajó: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="ship4State" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="5-es hajó: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="ship5State" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
             </StackPanel>
+
         </Grid>
 
     </Grid>

@@ -123,9 +123,8 @@ namespace torpedo
         {
             if (canShipPlacedThere())
             {
-                int[,] ships = getNewShipCoordinates();
-
                 vm.addShip(getNewShipCoordinates(), currentShipsLength, currentPlayerID);
+                vm.addShip(getNewShipCoordinates(), currentShipsLength, 1);     //AI hajói megegyeznek a player hajóival
                 totalShipsLength += currentShipsLength;
 
                 updateShipColors();

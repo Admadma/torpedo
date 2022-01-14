@@ -38,15 +38,15 @@ namespace torpedo
 
             PvCViewModel vm = new PvCViewModel();
 
-            PlayerWindow pw = new PlayerWindow(vm);
-            pw.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            pw.Show();
-            this.Close();
-
-            //PvCPlaceShips pvcPlaceShips = new PvCPlaceShips(vm);
-            //pvcPlaceShips.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            //pvcPlaceShips.Show();
+            //PlayerWindow pw = new PlayerWindow(vm);
+            //pw.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            //pw.Show();
             //this.Close();
+
+            PvCPlaceShips pvcPlaceShips = new PvCPlaceShips(vm);
+            pvcPlaceShips.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            pvcPlaceShips.Show();
+            this.Close();
         }
     }
 }
