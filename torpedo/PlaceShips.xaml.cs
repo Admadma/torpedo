@@ -26,6 +26,8 @@ namespace torpedo
 
         private int currentPlayerID = 0;
 
+        private int shipLength;
+
         private int startX = -1;
         private int startY = -1;
         private int endX = -1;
@@ -45,6 +47,8 @@ namespace torpedo
 
             this.vm = vm;
 
+            player1PlaceShip.Text = vm.player1Name + " helyezze el a hajóit!";
+
             for (int i = 0; i < 11; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -58,7 +62,39 @@ namespace torpedo
                 }
             }
         }
-        
+
+        public void onShip1Button(object sender, RoutedEventArgs e)
+        {
+            shipLength = 2;
+            Button button = sender as Button;
+            button.IsEnabled = false;
+            player1PlaceShip.Text = vm.player1Name + " válasszon ki 2 egymás után köetkező mezőt!";
+        }
+        public void onShip2Button(object sender, RoutedEventArgs e)
+        {
+            shipLength = 3;
+            Button button = sender as Button;
+            button.IsEnabled = false;
+        }
+        public void onShip3Button(object sender, RoutedEventArgs e)
+        {
+            shipLength = 3;
+            Button button = sender as Button;
+            button.IsEnabled = false;
+        }
+        public void onShip4Button(object sender, RoutedEventArgs e)
+        {
+            shipLength = 4;
+            Button button = sender as Button;
+            button.IsEnabled = false;
+        }
+        public void onShip5Button(object sender, RoutedEventArgs e)
+        {
+            shipLength = 5;
+            Button button = sender as Button;
+            button.IsEnabled = false;
+        }
+
         public void buttonClicked(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
@@ -87,19 +123,20 @@ namespace torpedo
             {
                 int[,] ships = getNewShipCoordinates();
 
-                MessageBox.Show($"{currentShipsLength}");
-                for(int i = 0; i < currentShipsLength; i++)
+                //MessageBox.Show($"{currentShipsLength}");
+                /*for(int i = 0; i < currentShipsLength; i++)
                 {
                     MessageBox.Show($"X: {ships[i,0]}  Y: {ships[i, 1]}");
-                }
+                }*/
 
                 vm.addShip(getNewShipCoordinates(), currentShipsLength, currentPlayerID);
                 totalShipsLength += currentShipsLength;
+
                 updateShipColors();
-                /*if(vm.isthereShipAtCoordinate(0, 0, currentPlayerID))
-                {
-                    MessageBox.Show("van");
-                }*/
+                startX = -1;
+                startY = -1;
+                endX = -1;
+                endY = -1;
             }
             else
             {
@@ -114,33 +151,46 @@ namespace torpedo
 
         private bool canShipPlacedThere()
         {
-            if (startX == endX && startY == endY)
+            if (shipLength != 0)
             {
-                return false;
-            }
-            else
-            {
-                if (startX == endX || startY == endY)
+                if (startX == endX && startY == endY)
                 {
-                    if (!areShipsColliding())
-                    {
-                        MessageBox.Show("nincs ütközés");
-                        //if() max length
-                        return true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ez ütközne egy másik hajóval. Tedd máshova!");
-                        return false;
-                    }
+                    return false;
                 }
                 else
                 {
-                    MessageBox.Show("Hajókat csak függőlegesen vagy vízszintesen lehet elhelyezni!");
-                    return false;
+                    if (startX == endX || startY == endY)
+                    {
+                        if (!areShipsColliding())
+                        {
+                            if(shipLength == currentShipsLength)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Válassz ki {shipLength} egymás után következő mezőt!");
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ez ütközne egy másik hajóval. Tedd máshova!");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hajókat csak függőlegesen vagy vízszintesen lehet elhelyezni!");
+                        return false;
+                    }
                 }
             }
-            return false;
+            else
+            {
+                MessageBox.Show("Előbb válassz hajót!");
+                return false;
+            }
         }
 
         private int[,] getNewShipCoordinates()
@@ -207,19 +257,22 @@ namespace torpedo
 
         private void updateShipColors()
         {
-            //TODO: lekérni az összes hajó koordinátát -> ezekre rakni egy új, piros gombot
+            //TODO: lekérni az összes hajó koordináját -> ezekre rakni egy új, piros gombot
             int[][] shipCoordinates = vm.getShips(currentPlayerID);
             //MessageBox.Show($" x: {shipCoordinates[0][0]}\n y: {shipCoordinates[0][1]}");
 
             for(int i = 0; i < totalShipsLength; i++)
             {
+                //MessageBox.Show($" x: {shipCoordinates[i][0]}\n y: {shipCoordinates[i][1]}");
+                
                 Button button = new Button();
-                Grid.SetRow(button, shipCoordinates[i][0]);
-                Grid.SetColumn(button, shipCoordinates[i][1]);
+                Grid.SetRow(button, shipCoordinates[i][1]);
+                Grid.SetColumn(button, shipCoordinates[i][0]);
                 button.Background = Brushes.Red;
                 button.Click += new RoutedEventHandler(buttonClicked);
                 Ships.Children.Add(button);
-                MessageBox.Show($"iteration: {i}");
+                
+
 
             }
 

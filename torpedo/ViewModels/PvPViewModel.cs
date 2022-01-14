@@ -58,6 +58,13 @@ namespace torpedo.ViewModels
             shipCoordinatesPlayer1[1] = new int[] { 1, 2 };
             shipCoordinatesPlayer1[2] = new int[] { 1, 3 };
             shipCoordinatesPlayer1[3] = new int[] { 1, 4 };
+            numberOfP1ShipCoordinates += 4;
+            */
+            /*
+            shipCoordinatesPlayer1[0] = new int[] { 1, 1 };
+            shipCoordinatesPlayer1[1] = new int[] { 1, 2 };
+            shipCoordinatesPlayer1[2] = new int[] { 1, 3 };
+            shipCoordinatesPlayer1[3] = new int[] { 1, 4 };
             shipCoordinatesPlayer1[4] = new int[] { 1, 5 };
 
             shipCoordinatesPlayer2[0] = new int[] { 2, 1 };
@@ -102,8 +109,8 @@ namespace torpedo.ViewModels
             {
                 for (int i = 0; i < shipLength; i++) //a hajó minden egyes pontján elvégzem a műveletet: hozzáadom  
                 {
-                    
-                    shipCoordinatesPlayer1[numberOfP1ShipCoordinates + i] = new int[] { shipPositions[i, 1], shipPositions[i, 0] };
+                    shipCoordinatesPlayer1[numberOfP1ShipCoordinates + i] = new int[] { shipPositions[i, 0], shipPositions[i, 1] };
+                    //shipCoordinatesPlayer1[i] = new int[] { shipPositions[i, 0], shipPositions[i, 1] };
                 }
                 numberOfP1ShipCoordinates += shipLength;
             }
@@ -111,7 +118,8 @@ namespace torpedo.ViewModels
             {
                 for (int i = 0; i < shipLength; i++)
                 {
-                    shipCoordinatesPlayer2[numberOfP2ShipCoordinates + i] = new int[] { shipPositions[i, 1], shipPositions[i, 0] };
+                    shipCoordinatesPlayer2[numberOfP2ShipCoordinates + i] = new int[] { shipPositions[i, 0], shipPositions[i, 1] };
+                    //shipCoordinatesPlayer2[i] = new int[] { shipPositions[i, 0], shipPositions[i, 1] };
                 }
                 numberOfP2ShipCoordinates += shipLength;
             }
