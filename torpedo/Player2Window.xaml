@@ -7,9 +7,11 @@
         xmlns:viewModel="clr-namespace:torpedo.ViewModels"
         mc:Ignorable="d"
         Title="Player2Window" Height="450" Width="800">
+    <!--
     <Window.DataContext>
         <viewModel:PvPViewModel/>
     </Window.DataContext>
+    -->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -44,7 +46,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">1</TextBlock>
                     <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">2</TextBlock>
-                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">4</TextBlock>
+                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">3</TextBlock>
                     <TextBlock Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">4</TextBlock>
                     <TextBlock Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center">5</TextBlock>
                     <TextBlock Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center">6</TextBlock>
@@ -117,7 +119,7 @@
             </Grid>
         </Grid>
         <Grid Grid.Column="1">
-            <TextBlock Text="{Binding Asd}"/>
+            <TextBlock Text="score"/>
         </Grid>
 
     </Grid>

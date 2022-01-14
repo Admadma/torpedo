@@ -40,7 +40,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">1</TextBlock>
                     <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">2</TextBlock>
-                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">4</TextBlock>
+                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">3</TextBlock>
                     <TextBlock Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">4</TextBlock>
                     <TextBlock Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center">5</TextBlock>
                     <TextBlock Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center">6</TextBlock>

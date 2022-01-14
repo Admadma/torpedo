@@ -37,7 +37,7 @@ namespace torpedo
             this.vm = vm;
             this.tmpW = tmpW;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 11; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
