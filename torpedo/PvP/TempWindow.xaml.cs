@@ -63,16 +63,15 @@ namespace torpedo
 
             if (currentPlayer == 0)
             {
-                MessageBox.Show($"Player1: {p1w} \n Player2: {p2w}");
+                //MessageBox.Show($"Player1: {p1w} \n Player2: {p2w}");
                 p1w.setParameters(vm, this);
                 p1w.ship1State.Text = vm.separateShipsP1[0].isSunk.ToString();
-                                      //vm.getShipState(1, currentPlayer);
                 p1w.Show();
                 this.Hide();
             }
             else if (currentPlayer == 1)
             {
-                MessageBox.Show($"Player1: {p1w} \n Player2: {p2w}");
+                //MessageBox.Show($"Player1: {p1w} \n Player2: {p2w}");
                 p2w.setParameters(vm, this);
                 p2w.Show();
                 this.Hide();
@@ -82,17 +81,16 @@ namespace torpedo
         public void isGameOver(int playerID)
         {
             if (vm.checkIfGameIsOver())
-            //if (false)
             {
                 if(playerID == 0)
                 {
-                    //MessageBox.Show("Player1 won");
+                    MessageBox.Show("Player1 won");
                     PlayerVsPlayerGO pvpGO = new PlayerVsPlayerGO(vm);
                     pvpGO.Show();
                 }
                 else if (playerID == 1)
                 {
-                    //MessageBox.Show("Player2 won");
+                    MessageBox.Show("Player2 won");
                     PlayerVsPlayerGO pvpGO = new PlayerVsPlayerGO(vm);
                     pvpGO.Show();
                 }

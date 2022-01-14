@@ -97,17 +97,20 @@ namespace torpedo.PvC
                 MessageBox.Show("Ide már lőttél. Célozz másik mezőt!");
             }
 
-            _hits = vm.getHits(0); ;
+            _hits = vm.getHits(0);
             _enemyHits = vm.getHits(1);
+            _numberOfTurns = vm.numberOfTurns;
             playerHits.Text = _hits.ToString();
             enemyHits.Text = _enemyHits.ToString();
+            numberOfTurns.Text = _numberOfTurns.ToString();
+            
         }
 
         public void endTurn()
         {
             if (vm.endPlayerTurn())
             {
-
+                MessageBox.Show("game over");
             }
         }
     }

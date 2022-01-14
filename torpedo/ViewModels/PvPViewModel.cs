@@ -79,7 +79,6 @@ namespace torpedo.ViewModels
 
         }
 
-        //saját pályámat vizsgálom, az AI ne ezzel kérdezze le hogy van-e ott találata
         public bool isthereShipAtCoordinate(int x, int y, int playerID)
         {
 
@@ -254,6 +253,17 @@ namespace torpedo.ViewModels
             else
             {
                 return _p2Hits;
+            }
+        }
+        public int getMisses(int playerID)
+        {
+            if (playerID == 0)
+            {
+                return _p1Misses;
+            }
+            else
+            {
+                return _p2Misses;
             }
         }
 

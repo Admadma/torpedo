@@ -7,11 +7,6 @@
         xmlns:viewModel="clr-namespace:torpedo.ViewModels"
         mc:Ignorable="d"
         Title="Player2Window" Height="450" Width="800">
-    <!--
-    <Window.DataContext>
-        <viewModel:PvPViewModel/>
-    </Window.DataContext>
-    -->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -24,7 +19,7 @@
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="[player name Databind] lövései (azt látom amiket eddig lőttem és találtak/nem találtak az ellenfél hajói közül)" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Name="player2Board"  Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
@@ -119,7 +114,41 @@
             </Grid>
         </Grid>
         <Grid Grid.Column="1">
-            <TextBlock Text="score"/>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="Találatok: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="playerHits" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="Körök száma: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="numberOfTurns" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="Ellenfél találatai: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="enemyHits" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <TextBlock>Hajóim:</TextBlock>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="1-es hajó: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="ship1State" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="2-es hajó: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="ship2State" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="3-es hajó: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="ship3State" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="4-es hajó: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="ship4State" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="5-es hajó: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="ship5State" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
         </Grid>
 
     </Grid>

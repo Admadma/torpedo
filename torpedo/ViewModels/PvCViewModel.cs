@@ -14,6 +14,8 @@ namespace torpedo.ViewModels
         public string winner;
         public int numberOfTurns;
 
+        Random r = new Random();
+
         private int _p1Hits { get; set; }
         private int _p2Hits { get; set; }
         private int _p1Misses { get; set; }
@@ -31,6 +33,11 @@ namespace torpedo.ViewModels
 
         private int currentPlayer = 0;      //0 player1  1 player2
 
+
+        //AI
+        private int[] foundShipCoordinate = new int[2] { -1, -1 };
+        private int[] nextFoundShipCoordinate = new int[2] { -1, -1 };
+
         public PvCViewModel()
         {
             for (int i = 0; i < _maxNumberOfShipCoordinates; i++)
@@ -38,43 +45,8 @@ namespace torpedo.ViewModels
                 shipCoordinatesPlayer1[i] = new int[] { -1, -1 };
                 shipCoordinatesPlayer2[i] = new int[] { -1, -1 };
             }
-
-            //shipCoordinatesPlayer2[0][0] = 1;
-            //shipCoordinatesPlayer2[0][1] = 1;
-            //shipCoordinatesPlayer2[0] = new int[] { 1, 1 };
-
-            
-
-            //numberOfP2ShipCoordinates++;
-
-            initializeAI();
-
         }
 
-        public void initializeAI()
-        {
-            //int[,] shipParts;
-            //shipParts = new int[1, 2];
-            //shipParts[0, 0] = 1;
-            //shipParts[0, 1] = 1;
-
-            //addShip(shipParts, 1, 1);
-            /*
-            int[,] ship1 = new int[3,2];
-            for(int i = 0; i < 3; i++)
-            {
-                ship1[i, 0] = i+1;
-                ship1[i, 1] = i+1;
-            }
-            ship1[2, 0] = 2;
-            ship1[2, 1] = 2;
-            //int[,] ship2 = new int[,] { { 0, 0 }, { 1, 0 } };
-
-            addShip(ship1, 3, 1);
-            //addShip(ship2, 2, 1);
-            */
-
-        }
 
         //saját pályámat vizsgálom, az AI ne ezzel kérdezze le hogy van-e ott találata
         public bool isthereShipAtCoordinate(int x, int y, int playerID)
@@ -235,8 +207,61 @@ namespace torpedo.ViewModels
         public bool endPlayerTurn()     //return true if AI won in this turn
         {
             //TODO: AI attack
+            aiAttack();
 
             return false;
+        }
+
+        public void aiAttack()  //majd bool true- értéket ad vissza, ha megnyerte a játékot
+        {
+            if(foundShipCoordinate[0] == -1 && foundShipCoordinate[1] == -1)
+            {
+                seekRandomCoordinate();
+            }
+            else
+            {
+                findShipAroundCoordinate();
+                //TODO: if(isGameWon())
+                //TODO: else foundShipCoordinate[0] = -1; foundShipCoordinate[1] = -1;
+            }
+        }
+
+        public void seekRandomCoordinate()
+        {
+            int x;
+            int y;
+            do
+            {
+                x = r.Next(0, 10);
+                y = r.Next(0, 11);
+                //addig keresek amíg nem találok érintetlen mezőt
+            } while (!isUntouchedCoordinate(x, y));      //currentPlayer alapján nézi melyik játékos támadta-e meg
+
+            if(isThereAShip(x, y))
+            {
+                foundShipCoordinate[0] = x;
+                foundShipCoordinate[1] = y;
+            }
+        }
+
+        public void findShipAroundCoordinate()
+        {
+            if(foundShipCoordinate[0] == 0)
+            {
+                if(foundShipCoordinate[1] == 0)
+                {
+                    if(isUntouchedCoordinate(foundShipCoordinate[0] + 1, foundShipCoordinate[1]))
+                    {
+                        if(isThereAShip(foundShipCoordinate[0] + 1, foundShipCoordinate[1]))
+                        {
+                            nextFoundShipCoordinate[0] = foundShipCoordinate[0] + 1;
+                            nextFoundShipCoordinate[1] = foundShipCoordinate[1];
+                        }
+                    }
+                    //TODO:vizsgálom jobbra
+                    //ha azt a mezőt már egyszer néztem akkor vizsgálom lefelé
+                }
+            }
         }
 
     }

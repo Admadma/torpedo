@@ -37,6 +37,8 @@ namespace torpedo
             }
 
             PvCViewModel vm = new PvCViewModel();
+            vm.player1Name = Player1c.Text;
+            vm.player2Name = "Computer";
 
             //PlayerWindow pw = new PlayerWindow(vm);
             //pw.WindowStartupLocation = WindowStartupLocation.CenterScreen;

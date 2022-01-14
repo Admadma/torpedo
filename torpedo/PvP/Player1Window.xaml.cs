@@ -34,6 +34,9 @@ namespace torpedo
         private int _misses;
         private int _numberOfTurns;
 
+        private int _enemyHits;
+        private int _enemyMisses;
+
 
         public Player1Window(PvPViewModel vm, TempWindow tmpW)
         {
@@ -41,11 +44,14 @@ namespace torpedo
 
             this.vm = vm;
             this.tmpW = tmpW;
-            
+
+            player1Board.Text = vm.player1Name + " támad.";
+
+
             for (int i = 0; i < 11; i++)
             {
                 for (int j = 0; j < 10; j++)
-                {                    
+                {
                     Button button = new Button();
                     Grid.SetRow(button, i);
                     Grid.SetColumn(button, j);
@@ -63,12 +69,15 @@ namespace torpedo
             {
                 if (vm.isUntouchedCoordinate(Grid.GetColumn(button), Grid.GetRow(button)))
                 {
-                    //_numberOfTurns = vm.getTurns();
-                    //turns.text = _numberOfTurns;
+                    _hits = vm.getHits(0);
+                    playerHits.Text = _hits.ToString();
+                    _enemyHits = vm.getHits(1);
+                    enemyHits.Text = _enemyHits.ToString();
+                    _numberOfTurns = vm.numberOfTurns;
+                    numberOfTurns.Text = _numberOfTurns.ToString();
+
                     if (vm.isThereAShip(Grid.GetColumn(button), Grid.GetRow(button)))
                     {
-                        _hits = vm.getHits(0);
-                        player1Score.Text = _hits.ToString();
                         button.Background = Brushes.Red;
                         endTurn();
                     }
@@ -77,7 +86,6 @@ namespace torpedo
                         button.Background = Brushes.Blue;
                         endTurn();
                     }
-
                 }
                 else
                 {
@@ -96,22 +104,5 @@ namespace torpedo
             tmpW.setParameters(this, null, vm);
             tmpW.isGameOver(0);
         }
-
-        public void endTurnClicked(object sender, RoutedEventArgs e)
-        {
-            //tmpW.setParameters(this, p2w, vm);
-            //tmpW.Show();
-            //this.Hide();
-            //tmpW = new TempWindow(this, p2w, vm);
-            //tmpW.Show();
-            //this.Close();
-        }
-
-        public void endGame()
-        {
-            MessageBox.Show("Player1 won!");
-            this.Close();
-        }
-
     }
 }

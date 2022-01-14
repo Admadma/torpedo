@@ -18,7 +18,7 @@
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="[player name Databind] lövései (azt látom amiket eddig lőttem és találtak/nem találtak az ellenfél hajói közül)" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Name="player1Board"  Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
@@ -121,11 +121,15 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Background="white" Orientation="Horizontal">
                     <TextBlock Text="Találatok: " TextWrapping="Wrap" Margin="5"/>
-                    <TextBlock x:Name="player1Score" TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="playerHits" TextWrapping="Wrap" Margin="5"/>
                 </StackPanel>
                 <StackPanel Background="white" Orientation="Horizontal">
                     <TextBlock Text="Körök száma: " TextWrapping="Wrap" Margin="5"/>
                     <TextBlock x:Name="numberOfTurns" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="Ellenfél találatai: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="enemyHits" TextWrapping="Wrap" Margin="5"/>
                 </StackPanel>
                 <TextBlock>Hajóim:</TextBlock>
                 <StackPanel Background="white" Orientation="Horizontal">
