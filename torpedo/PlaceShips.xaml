@@ -18,7 +18,7 @@
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="[player name Databind] lövései (azt látom amiket eddig lőttem és találtak/nem találtak az ellenfél hajói közül)" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock x:Name="player1PlaceShip" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
@@ -117,11 +117,15 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel Background="white" Orientation="Horizontal">
-                <TextBlock Text="Score: " TextWrapping="Wrap" Margin="5"/>
-                <TextBlock x:Name="player1Score" TextWrapping="Wrap" Margin="5"/>
-            </StackPanel>
+            <Button Name="ship1" Grid.Row="0" Content="2-es hajó lerakása" Click="onShip1Button"></Button>
+            <Button Name="ship2" Grid.Row="1" Content="3-as hajó lerakása" Click="onShip2Button"></Button>
+            <Button Name="ship3" Grid.Row="2" Content="3-as hajó lerakása" Click="onShip3Button"></Button>
+            <Button Name="ship4" Grid.Row="3" Content="4-es hajó lerakása" Click="onShip4Button"></Button>
+            <Button Name="ship5" Grid.Row="4" Content="5-ös hajó lerakása" Click="onShip5Button"></Button>
         </Grid>
 
     </Grid>
