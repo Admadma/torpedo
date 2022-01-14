@@ -73,7 +73,7 @@ namespace torpedo
 
 
             }
-            MessageBox.Show(vm.winner + " won, score saved");
+            //MessageBox.Show(vm.winner + " won, score saved");
         }
     }
 }
