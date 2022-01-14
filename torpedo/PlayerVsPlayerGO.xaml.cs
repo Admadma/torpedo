@@ -50,7 +50,7 @@ namespace torpedo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           // MessageBox.Show(vm.winner);
+           
             
             if (File.Exists("Scores.xml") == false)
             {
@@ -84,7 +84,10 @@ namespace torpedo
                    new XElement("PlayerTwo", tPlayertwo),
                    new XElement("Result", Winner + " Won")));
                 xDocument.Save("Scores.xml");
+                
+                
             }
+             MessageBox.Show(vm.winner + " won, score saved");
         }
     }
 }
