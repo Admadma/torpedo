@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using torpedo.ViewModels;
 
 namespace torpedo
 {
@@ -36,6 +37,9 @@ namespace torpedo
             //TODO: rendes PvC osztályt megcsinálni
             //PlayerVsComputerGame pvcgWindow = new PlayerVsComputerGame();
             //pvcgWindow.Show();
+
+            PvCViewModel vm = new PvCViewModel();
+            PvCPlaceShips pvcPlaceShips = new PvCPlaceShips(vm);
             this.Close();
         }
     }

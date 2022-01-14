@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,12 +16,11 @@ using torpedo.ViewModels;
 namespace torpedo
 {
     /// <summary>
-    /// Interaction logic for PlaceShips.xaml
+    /// Interaction logic for PvCPlaceShips.xaml
     /// </summary>
-    public partial class PlaceShips : Window
+    public partial class PvCPlaceShips : Window
     {
-
-        PvPViewModel vm;
+        PvCViewModel vm;
 
         private int currentPlayerID;
 
@@ -41,25 +39,13 @@ namespace torpedo
         private Button startButton;
         private Button endButton;
 
-        public PlaceShips(PvPViewModel vm, int currentPlayer)
+        public PvCPlaceShips(PvCViewModel vm)
         {
             InitializeComponent();
 
             this.vm = vm;
-            this.currentPlayerID = currentPlayer;
-
-            if(currentPlayer == 0)
-            {
-                playerName = vm.player1Name;
-                playerPlaceShip.Text = playerName + " helyezze el a hajóit!";
-            }
-            else
-            {
-                playerName = vm.player2Name;
-                playerPlaceShip.Text = playerName + " helyezze el a hajóit!";
-            }
-
-            
+            playerName = vm.player1Name;
+            playerPlaceShip.Text = playerName + " helyezze el a hajóit!";
 
             for (int i = 0; i < 11; i++)
             {
@@ -115,22 +101,22 @@ namespace torpedo
         {
             Button button = sender as Button;
 
-            if(startX == -1 && startY == -1)
+            if (startX == -1 && startY == -1)
             {
                 startX = Grid.GetColumn(button);
                 startY = Grid.GetRow(button);
                 button.Background = Brushes.Red;
                 startButton = button;
             }
-            else if(endX == -1 && endY == -1)
+            else if (endX == -1 && endY == -1)
             {
                 endX = Grid.GetColumn(button);
                 endY = Grid.GetRow(button);
                 button.Background = Brushes.Red;
                 endButton = button;
-                placeShip();
+                //placeShip();
             }
-        }
+        }/*
 
         private void placeShip()
         {
@@ -147,8 +133,10 @@ namespace torpedo
                 endX = -1;
                 endY = -1;
 
-                if(totalShipsLength >= 17)
+                if (totalShipsLength >= 17)
                 {
+                    //TODO: kezdés random legyen
+
                     if (currentPlayerID == 0)
                     {
                         PlaceShips placePlayer2Ships = new PlaceShips(vm, 1);
@@ -199,7 +187,7 @@ namespace torpedo
                     {
                         if (!areShipsColliding())
                         {
-                            if(shipLength == currentShipsLength)
+                            if (shipLength == currentShipsLength)
                             {
                                 return true;
                             }
@@ -235,7 +223,7 @@ namespace torpedo
 
             if (startX == endX)
             {
-                if(startY > endY)
+                if (startY > endY)
                 {
                     int tmp = endY;
                     endY = startY;
@@ -246,7 +234,7 @@ namespace torpedo
 
                 shipParts = new int[currentShipsLength, 2];
 
-                for(int i = 0; i < currentShipsLength; i++)
+                for (int i = 0; i < currentShipsLength; i++)
                 {
                     shipParts[i, 0] = startX;
                     shipParts[i, 1] = startY + i;
@@ -281,9 +269,9 @@ namespace torpedo
         {
             int[,] shipParts = getNewShipCoordinates();
 
-            for(int i = 0; i < currentShipsLength; i++)
+            for (int i = 0; i < currentShipsLength; i++)
             {
-                if(vm.isthereShipAtCoordinate(shipParts[i, 0], shipParts[i, 1], currentPlayerID))
+                if (vm.isthereShipAtCoordinate(shipParts[i, 0], shipParts[i, 1], currentPlayerID))
                 {
                     return true;
                 }
@@ -295,7 +283,7 @@ namespace torpedo
         {
             int[][] shipCoordinates = vm.getShips(currentPlayerID);
 
-            for(int i = 0; i < totalShipsLength; i++)
+            for (int i = 0; i < totalShipsLength; i++)
             {
                 Button button = new Button();
                 Grid.SetRow(button, shipCoordinates[i][1]);
@@ -306,5 +294,6 @@ namespace torpedo
             }
 
         }
-    }
+    }*/
+}
 }

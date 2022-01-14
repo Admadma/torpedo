@@ -49,7 +49,7 @@ namespace torpedo.ViewModels
                 shipCoordinatesPlayer2[i] = new int[] { -1, -1 };
             }
 
-            _p2Hits = 100;
+            //_p2Hits = 100;
 
             /*
             shipCoordinatesPlayer1[0] = new int[] { 1, 1 };
@@ -74,6 +74,7 @@ namespace torpedo.ViewModels
 
         }
 
+        //saját pályámat vizsgálom, az AI ne ezzel kérdezze le hogy van-e ott találata
         public bool isthereShipAtCoordinate(int x, int y, int playerID)
         {
 
