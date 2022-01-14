@@ -28,12 +28,10 @@ namespace torpedo
 
         PvPViewModel vm;
         
-        string Playerone = "playerone";
-        string Playertwo = "playertwo";
-        
         string Winner = "winner";
         string tPlayerone = "a";
         string tPlayertwo = "b";
+
 
         public PlayerVsPlayerGO()
         {
@@ -44,12 +42,16 @@ namespace torpedo
         {
             InitializeComponent();
             this.vm = vm;
+            tPlayerone = vm.player1Name;
+            tPlayertwo = vm.player2Name;
+            Winner = vm.winner;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(vm.winner);
-            /*
+           // MessageBox.Show(vm.winner);
+            
             if (File.Exists("Scores.xml") == false)
             {
                 XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
@@ -82,7 +84,7 @@ namespace torpedo
                    new XElement("PlayerTwo", tPlayertwo),
                    new XElement("Result", Winner + " Won")));
                 xDocument.Save("Scores.xml");
-            }*/
+            }
         }
     }
 }
