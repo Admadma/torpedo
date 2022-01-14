@@ -42,7 +42,7 @@ namespace torpedo
             this.vm = vm;
             this.tmpW = tmpW;
             
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 11; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {                    
@@ -50,7 +50,7 @@ namespace torpedo
                     Grid.SetRow(button, i);
                     Grid.SetColumn(button, j);
                     button.Click += new RoutedEventHandler(buttonClicked);
-                    Player1Attacks.Children.Add(button); 
+                    Player1Attacks.Children.Add(button);
                 }
             }
         }

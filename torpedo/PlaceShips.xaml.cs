@@ -32,6 +32,7 @@ namespace torpedo
         private int endY = -1;
 
         private int currentShipsLength;
+        private int totalShipsLength;       //nem kérem le a model-ből, itt adom hozzá folyamatosan a currentShipsLength értékét 
 
         private int[][] shipCoordinates;
 
@@ -44,7 +45,7 @@ namespace torpedo
 
             this.vm = vm;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 11; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
@@ -57,7 +58,7 @@ namespace torpedo
                 }
             }
         }
-
+        
         public void buttonClicked(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
@@ -84,7 +85,21 @@ namespace torpedo
         {
             if (canShipPlacedThere())
             {
+                int[,] ships = getNewShipCoordinates();
 
+                MessageBox.Show($"{currentShipsLength}");
+                for(int i = 0; i < currentShipsLength; i++)
+                {
+                    MessageBox.Show($"X: {ships[i,0]}  Y: {ships[i, 1]}");
+                }
+
+                vm.addShip(getNewShipCoordinates(), currentShipsLength, currentPlayerID);
+                totalShipsLength += currentShipsLength;
+                updateShipColors();
+                /*if(vm.isthereShipAtCoordinate(0, 0, currentPlayerID))
+                {
+                    MessageBox.Show("van");
+                }*/
             }
             else
             {
@@ -94,7 +109,6 @@ namespace torpedo
                 startY = -1;
                 endX = -1;
                 endY = -1;
-                MessageBox.Show("Érvénytelen hajó");        //canShipPlacedThere-ben vizsgálni minden hibát (dimenzió, ütközés, hossz) külön hibaüzenet
             }
         }
 
@@ -102,12 +116,11 @@ namespace torpedo
         {
             if (startX == endX && startY == endY)
             {
-                //TODO: kezdőmezőre kattintottam => visszavonni a kezdőmezőt
-
+                return false;
             }
             else
             {
-                if (startX == endX || startY == endY)        //Ha egy tengely egyenlő akkor biztos egy síkban vannak //NEM lehet átlós hajó
+                if (startX == endX || startY == endY)
                 {
                     if (!areShipsColliding())
                     {
@@ -143,14 +156,14 @@ namespace torpedo
                     startY = tmp;
                 }
 
-                currentShipsLength = endY - startY;
+                currentShipsLength = endY - startY + 1;
 
                 shipParts = new int[currentShipsLength, 2];
 
                 for(int i = 0; i < currentShipsLength; i++)
                 {
                     shipParts[i, 0] = startX;
-                    shipParts[i, 1] = startY + i ;
+                    shipParts[i, 1] = startY + i;
                 }
 
                 return shipParts;
@@ -163,7 +176,7 @@ namespace torpedo
                     endX = startX;
                     startX = tmp;
                 }
-                currentShipsLength = endX - startX;
+                currentShipsLength = endX - startX + 1;
 
                 shipParts = new int[currentShipsLength, 2];
 
@@ -190,6 +203,26 @@ namespace torpedo
                 }
             }
             return false;
+        }
+
+        private void updateShipColors()
+        {
+            //TODO: lekérni az összes hajó koordinátát -> ezekre rakni egy új, piros gombot
+            int[][] shipCoordinates = vm.getShips(currentPlayerID);
+            //MessageBox.Show($" x: {shipCoordinates[0][0]}\n y: {shipCoordinates[0][1]}");
+
+            for(int i = 0; i < totalShipsLength; i++)
+            {
+                Button button = new Button();
+                Grid.SetRow(button, shipCoordinates[i][0]);
+                Grid.SetColumn(button, shipCoordinates[i][1]);
+                button.Background = Brushes.Red;
+                button.Click += new RoutedEventHandler(buttonClicked);
+                Ships.Children.Add(button);
+                MessageBox.Show($"iteration: {i}");
+
+            }
+
         }
     }
 }
