@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
+using torpedo.ViewModels;
 
 namespace torpedo
 {
@@ -56,11 +57,11 @@ namespace torpedo
 
             if (true)
             {
-                ViewModels.PvPViewModel vm = new ViewModels.PvPViewModel(Player1.Text, Player2.Text);
-                vm.player1Name = Player1.Text;
-                vm.player2Name = Player2.Text;
+                PvPViewModel vm = new PvPViewModel();
+                vm.player1Name = Playerone;
+                vm.player2Name = Playertwo;
+                
                 PlaceShips placeShips = new PlaceShips(vm);
-
                 placeShips.Show();
                 this.Close();
                 
