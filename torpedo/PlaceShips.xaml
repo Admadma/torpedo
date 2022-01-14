@@ -18,7 +18,7 @@
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="player1PlaceShip" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock x:Name="playerPlaceShip" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>

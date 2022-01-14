@@ -61,7 +61,8 @@ namespace torpedo
                 vm.player1Name = Playerone;
                 vm.player2Name = Playertwo;
                 
-                PlaceShips placeShips = new PlaceShips(vm);
+                PlaceShips placeShips = new PlaceShips(vm, 0);
+                placeShips.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 placeShips.Show();
                 this.Close();
                 

@@ -24,7 +24,7 @@ namespace torpedo
 
         PvPViewModel vm;
 
-        private int currentPlayerID = 0;
+        private int currentPlayerID;
 
         private int shipLength;
 
@@ -36,18 +36,32 @@ namespace torpedo
         private int currentShipsLength;
         private int totalShipsLength;       //nem kérem le a model-ből, itt adom hozzá folyamatosan a currentShipsLength értékét 
 
-        private int[][] shipCoordinates;
+        //private int[][] shipCoordinates;
+
+        private string playerName;
 
         private Button startButton;
         private Button endButton;
 
-        public PlaceShips(PvPViewModel vm)
+        public PlaceShips(PvPViewModel vm, int currentPlayer)
         {
             InitializeComponent();
 
             this.vm = vm;
+            this.currentPlayerID = currentPlayer;
 
-            player1PlaceShip.Text = vm.player1Name + " helyezze el a hajóit!";
+            if(currentPlayer == 0)
+            {
+                playerName = vm.player1Name;
+                playerPlaceShip.Text = playerName + " helyezze el a hajóit!";
+            }
+            else
+            {
+                playerName = vm.player2Name;
+                playerPlaceShip.Text = playerName + " helyezze el a hajóit!";
+            }
+
+            
 
             for (int i = 0; i < 11; i++)
             {
@@ -68,31 +82,35 @@ namespace torpedo
             shipLength = 2;
             Button button = sender as Button;
             button.IsEnabled = false;
-            player1PlaceShip.Text = vm.player1Name + " válasszon ki 2 egymás után köetkező mezőt!";
+            playerPlaceShip.Text = playerName + " válasszon ki 2 egymás után köetkező mezőt!";
         }
         public void onShip2Button(object sender, RoutedEventArgs e)
         {
             shipLength = 3;
             Button button = sender as Button;
             button.IsEnabled = false;
+            playerPlaceShip.Text = playerName + " válasszon ki 3 egymás után köetkező mezőt!";
         }
         public void onShip3Button(object sender, RoutedEventArgs e)
         {
             shipLength = 3;
             Button button = sender as Button;
             button.IsEnabled = false;
+            playerPlaceShip.Text = playerName + " válasszon ki 3 egymás után köetkező mezőt!";
         }
         public void onShip4Button(object sender, RoutedEventArgs e)
         {
             shipLength = 4;
             Button button = sender as Button;
             button.IsEnabled = false;
+            playerPlaceShip.Text = playerName + " válasszon ki 4 egymás után köetkező mezőt!";
         }
         public void onShip5Button(object sender, RoutedEventArgs e)
         {
             shipLength = 5;
             Button button = sender as Button;
             button.IsEnabled = false;
+            playerPlaceShip.Text = playerName + " válasszon ki 5 egymás után köetkező mezőt!";
         }
 
         public void buttonClicked(object sender, RoutedEventArgs e)
@@ -137,6 +155,33 @@ namespace torpedo
                 startY = -1;
                 endX = -1;
                 endY = -1;
+
+                if(totalShipsLength >= 17)
+                {
+                    if (currentPlayerID == 0)
+                    {
+                        PlaceShips placePlayer2Ships = new PlaceShips(vm, 1);
+                        placePlayer2Ships.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                        placePlayer2Ships.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        TempWindow tmpW = new TempWindow();
+                        Player1Window p1w = new Player1Window(vm, tmpW);
+                        Player2Window p2w = new Player2Window(vm, tmpW);
+
+                        tmpW = new TempWindow(p1w, p2w, vm);
+
+                        p1w.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                        p2w.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                        tmpW.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+
+                        tmpW.Show();
+                        this.Close();
+                    }
+                }
             }
             else
             {
