@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using torpedo.ViewModels;
+using torpedo.PvC;
 
 namespace torpedo
 {
@@ -34,13 +35,18 @@ namespace torpedo
                 MessageBox.Show("Player1 name is invalid");
                 return;
             }
-            //TODO: rendes PvC osztályt megcsinálni
-            //PlayerVsComputerGame pvcgWindow = new PlayerVsComputerGame();
-            //pvcgWindow.Show();
 
             PvCViewModel vm = new PvCViewModel();
-            PvCPlaceShips pvcPlaceShips = new PvCPlaceShips(vm);
+
+            PlayerWindow pw = new PlayerWindow(vm);
+            pw.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            pw.Show();
             this.Close();
+
+            //PvCPlaceShips pvcPlaceShips = new PvCPlaceShips(vm);
+            //pvcPlaceShips.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            //pvcPlaceShips.Show();
+            //this.Close();
         }
     }
 }

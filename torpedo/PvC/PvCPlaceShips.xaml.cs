@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using torpedo.PvC;
 using torpedo.ViewModels;
 
 namespace torpedo
@@ -114,9 +115,9 @@ namespace torpedo
                 endY = Grid.GetRow(button);
                 button.Background = Brushes.Red;
                 endButton = button;
-                //placeShip();
+                placeShip();
             }
-        }/*
+        }
 
         private void placeShip()
         {
@@ -136,30 +137,10 @@ namespace torpedo
                 if (totalShipsLength >= 17)
                 {
                     //TODO: kezdés random legyen
-
-                    if (currentPlayerID == 0)
-                    {
-                        PlaceShips placePlayer2Ships = new PlaceShips(vm, 1);
-                        placePlayer2Ships.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                        placePlayer2Ships.Show();
-                        this.Hide();
-                    }
-                    else
-                    {
-                        TempWindow tmpW = new TempWindow();
-                        Player1Window p1w = new Player1Window(vm, tmpW);
-                        Player2Window p2w = new Player2Window(vm, tmpW);
-
-                        tmpW = new TempWindow(p1w, p2w, vm);
-
-                        p1w.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                        p2w.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                        tmpW.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
-
-                        tmpW.Show();
-                        this.Close();
-                    }
+                    PlayerWindow pw = new PlayerWindow(vm);
+                    pw.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                    pw.Show();
+                    this.Close();
                 }
             }
             else
@@ -294,6 +275,5 @@ namespace torpedo
             }
 
         }
-    }*/
-}
+    }
 }

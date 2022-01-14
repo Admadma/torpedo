@@ -154,7 +154,7 @@ namespace torpedo
                         PlaceShips placePlayer2Ships = new PlaceShips(vm, 1);
                         placePlayer2Ships.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                         placePlayer2Ships.Show();
-                        this.Hide();
+                        this.Close();
                     }
                     else
                     {

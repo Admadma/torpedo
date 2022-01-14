@@ -38,7 +38,16 @@ namespace torpedo.ViewModels
                 shipCoordinatesPlayer2[i] = new int[] { -1, -1 };
             }
 
+            initializeAI();
+
         }
+
+        private void initializeAI()
+        {
+            int[,] ship1 = new int[,] { { 0, 0 }, { 1, 0 } };
+            int[,] ship2 = new int[,] { { 0, 0 }, { 1, 0 } };
+        }
+
         //saját pályámat vizsgálom, az AI ne ezzel kérdezze le hogy van-e ott találata
         public bool isthereShipAtCoordinate(int x, int y, int playerID)
         {
@@ -84,6 +93,34 @@ namespace torpedo.ViewModels
                     shipCoordinatesPlayer2[numberOfP2ShipCoordinates + i] = new int[] { shipPositions[i, 0], shipPositions[i, 1] };
                 }
                 numberOfP2ShipCoordinates += shipLength;
+            }
+        }
+
+        public int[][] getShips(int playerID)
+        {
+            int[][] tempShips = new int[numberOfP1ShipCoordinates][];
+            for (int i = 0; i < numberOfP1ShipCoordinates; i++)
+            {
+                tempShips[i] = new int[] { -1, -1 };
+            }
+
+            if (playerID == 0)
+            {
+                for (int i = 0; i < numberOfP1ShipCoordinates; i++)
+                {
+                    tempShips[i][0] = shipCoordinatesPlayer1[i][0];
+                    tempShips[i][1] = shipCoordinatesPlayer1[i][1];
+                }
+                return tempShips;
+            }
+            else
+            {
+                for (int i = 0; i < numberOfP2ShipCoordinates; i++)
+                {
+                    tempShips[i][0] = shipCoordinatesPlayer2[i][0];
+                    tempShips[i][1] = shipCoordinatesPlayer2[i][1];
+                }
+                return tempShips;
             }
         }
 
