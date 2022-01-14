@@ -33,8 +33,9 @@ namespace torpedo
                 MessageBox.Show("Player1 name is invalid");
                 return;
             }
-            PlayerVsComputerGame pvcgWindow = new PlayerVsComputerGame();
-            pvcgWindow.Show();
+            //TODO: rendes PvC osztályt megcsinálni
+            //PlayerVsComputerGame pvcgWindow = new PlayerVsComputerGame();
+            //pvcgWindow.Show();
             this.Close();
         }
     }
