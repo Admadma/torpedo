@@ -35,8 +35,8 @@ namespace torpedo
             //TODO: todo
             //név fogadás már működik...   amíg többször futtatom és tesztelgetem ne várjon neveket, ezért kikommentelem és placeholder nevekkel pótlom
             //ezeket később ki kell majd törölni
-            Player1.Text = "asd";
-            Player2.Text = "baaaaad";
+            //Player1.Text = "asd";
+            //Player2.Text = "baaaaad";
 
            
             Regex regex = new Regex(@"[^a-zA-Z0-9$]");
