@@ -136,8 +136,6 @@ namespace torpedo
         {
             if (canShipPlacedThere())
             {
-                int[,] ships = getNewShipCoordinates();
-
                 vm.addShip(getNewShipCoordinates(), currentShipsLength, currentPlayerID);
                 totalShipsLength += currentShipsLength;
 

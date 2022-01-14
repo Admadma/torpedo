@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using torpedo.Models;
 
 
 namespace torpedo.ViewModels
@@ -17,8 +18,7 @@ namespace torpedo.ViewModels
         public string player1Name;
         public string player2Name;
         public string winner;
-
-
+        public int numberOfTurns;
 
 
 
@@ -37,6 +37,11 @@ namespace torpedo.ViewModels
 
         private int numberOfP1ShipCoordinates;
         private int numberOfP2ShipCoordinates;
+
+        public Ship[] separateShipsP1 = new Ship[5];
+        public Ship[] separateShipsP2 = new Ship[5];
+
+
 
         private int currentPlayer = 0;      //0 player1  1 player2
 
@@ -111,6 +116,7 @@ namespace torpedo.ViewModels
                     shipCoordinatesPlayer1[numberOfP1ShipCoordinates + i] = new int[] { shipPositions[i, 0], shipPositions[i, 1] };
                 }
                 numberOfP1ShipCoordinates += shipLength;
+                addShipToSeparateShips(shipPositions, shipLength, playerID);
             }
             else
             {
@@ -119,8 +125,97 @@ namespace torpedo.ViewModels
                     shipCoordinatesPlayer2[numberOfP2ShipCoordinates + i] = new int[] { shipPositions[i, 0], shipPositions[i, 1] };
                 }
                 numberOfP2ShipCoordinates += shipLength;
+                addShipToSeparateShips(shipPositions, shipLength, playerID);
             }
         }
+
+        public void addShipToSeparateShips(int[,] shipPositions, int shipLength, int playerID)
+        {
+            if (playerID == 0)
+            {
+                if (shipLength == 2)
+                {
+                    separateShipsP1[0] = new Ship(shipPositions, shipLength);
+                }
+                else if (shipLength == 3)
+                {
+                    if (separateShipsP1[1] is null)
+                    {
+                        separateShipsP1[1] = new Ship(shipPositions, shipLength);
+                    }
+                    else
+                    {
+                        separateShipsP1[2] = new Ship(shipPositions, shipLength);
+                    }
+
+                }
+                else if (shipLength == 4)
+                {
+                    separateShipsP1[3] = new Ship(shipPositions, shipLength);
+                }
+                else
+                {
+                    separateShipsP1[4] = new Ship(shipPositions, shipLength);
+                }
+            }
+            else
+            {
+                if (shipLength == 2)
+                {
+                    separateShipsP2[0] = new Ship(shipPositions, shipLength);
+                }
+                else if (shipLength == 3)
+                {
+                    if (separateShipsP2[1] is null)
+                    {
+                        separateShipsP2[1] = new Ship(shipPositions, shipLength);
+                    }
+                    else
+                    {
+                        separateShipsP2[2] = new Ship(shipPositions, shipLength);
+                    }
+
+                }
+                else if (shipLength == 4)
+                {
+                    separateShipsP2[3] = new Ship(shipPositions, shipLength);
+                }
+                else
+                {
+                    separateShipsP2[4] = new Ship(shipPositions, shipLength);
+                }
+            }
+        }
+        /*
+        public void checkIfSeparateShipSunk(int playerID)
+        {
+            //TODO: adott player minden egyes különálló hajóját megvizsgálni,      isthereShipAtCoordinate -el az aktuális player oldalán nézhetem, hogy a hajói hogy állnak 
+            if(playerID == 0)
+            {
+                for(int i = 0; i < 5; i++)
+                {
+                    checkSeparateShipCoordinateForCollisions(separateShipsP1[i].shipPositions, separateShipsP1[i].length);
+                }
+            }
+            else
+            {
+
+            }
+        }
+
+        public bool checkSeparateShipCoordinateForCollisions(int[,] shipPositions, int length)
+        {
+            for(int i = 0; i < length; i++)
+            {
+                if(!isthereShipAtCoordinate(shipPositions[i, 0], shipPositions[i, 1], 0))       //rossz: ez a hajók helye, nem a találatoké. találatok koordinátái nincsenek tárolva
+                {
+                    return false;
+                }
+            }
+
+            return false;
+        }
+        */
 
         public int[][] getShips(int playerID)
         {
@@ -150,9 +245,9 @@ namespace torpedo.ViewModels
             }
         }
 
-        public int getHits(int player)
+        public int getHits(int playerID)
         {
-            if (player == 0)
+            if (playerID == 0)
             {
                 return _p1Hits;
             }
@@ -203,14 +298,17 @@ namespace torpedo.ViewModels
                     if (shipCoordinatesPlayer2[i][0] == x && shipCoordinatesPlayer2[i][1] == y)
                     {
                         _p1Hits++;
+                        //checkIfSeparateShipSunk(0);
                         return true;
                     }
                 }
-
+                _p1Misses++;
                 return false;
             }
             else
             {
+                numberOfTurns++;
+
                 currentPlayer = 0;
                 wasCoordinateAlreadyAttackedByPlayer2[x, y] = true;
                 for (int i = 0; i < _maxNumberOfShipCoordinates; i++)
@@ -218,10 +316,11 @@ namespace torpedo.ViewModels
                     if (shipCoordinatesPlayer1[i][0] == x && shipCoordinatesPlayer1[i][1] == y)
                     {
                         _p2Hits++;
+                        //checkIfSeparateShipSunk(1);
                         return true;
                     }
                 }
-
+                _p1Misses++;
                 return false;
             }
         }

@@ -65,6 +65,8 @@ namespace torpedo
             {
                 MessageBox.Show($"Player1: {p1w} \n Player2: {p2w}");
                 p1w.setParameters(vm, this);
+                p1w.ship1State.Text = vm.separateShipsP1[0].isSunk.ToString();
+                                      //vm.getShipState(1, currentPlayer);
                 p1w.Show();
                 this.Hide();
             }
