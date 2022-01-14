@@ -55,6 +55,8 @@ namespace torpedo
             Playerone = Player1.Text;
             Playertwo = Player2.Text;
 
+            MessageBox.Show("Ship placement by clicking the first and last coordinate.");
+
             if (true)
             {
                 PvPViewModel vm = new PvPViewModel();
