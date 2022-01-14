@@ -10,7 +10,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
-            <!-- ebbe az oszlopba kerülnek majd az adatok (én eltalált hajóim, én találataim, elsülyedt hajóim)-->
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>

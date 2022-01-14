@@ -34,9 +34,7 @@ namespace torpedo
         private int endY = -1;
 
         private int currentShipsLength;
-        private int totalShipsLength;       //nem kérem le a model-ből, itt adom hozzá folyamatosan a currentShipsLength értékét 
-
-        //private int[][] shipCoordinates;
+        private int totalShipsLength;
 
         private string playerName;
 
@@ -132,7 +130,6 @@ namespace torpedo
                 endButton = button;
                 placeShip();
             }
-
         }
 
         private void placeShip()
@@ -140,12 +137,6 @@ namespace torpedo
             if (canShipPlacedThere())
             {
                 int[,] ships = getNewShipCoordinates();
-
-                //MessageBox.Show($"{currentShipsLength}");
-                /*for(int i = 0; i < currentShipsLength; i++)
-                {
-                    MessageBox.Show($"X: {ships[i,0]}  Y: {ships[i, 1]}");
-                }*/
 
                 vm.addShip(getNewShipCoordinates(), currentShipsLength, currentPlayerID);
                 totalShipsLength += currentShipsLength;
@@ -163,7 +154,7 @@ namespace torpedo
                         PlaceShips placePlayer2Ships = new PlaceShips(vm, 1);
                         placePlayer2Ships.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                         placePlayer2Ships.Show();
-                        this.Hide();
+                        this.Close();
                     }
                     else
                     {
@@ -302,23 +293,16 @@ namespace torpedo
 
         private void updateShipColors()
         {
-            //TODO: lekérni az összes hajó koordináját -> ezekre rakni egy új, piros gombot
             int[][] shipCoordinates = vm.getShips(currentPlayerID);
-            //MessageBox.Show($" x: {shipCoordinates[0][0]}\n y: {shipCoordinates[0][1]}");
 
             for(int i = 0; i < totalShipsLength; i++)
             {
-                //MessageBox.Show($" x: {shipCoordinates[i][0]}\n y: {shipCoordinates[i][1]}");
-                
                 Button button = new Button();
                 Grid.SetRow(button, shipCoordinates[i][1]);
                 Grid.SetColumn(button, shipCoordinates[i][0]);
                 button.Background = Brushes.Red;
                 button.Click += new RoutedEventHandler(buttonClicked);
                 Ships.Children.Add(button);
-                
-
-
             }
 
         }

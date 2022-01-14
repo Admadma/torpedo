@@ -1,27 +1,17 @@
-﻿using Prism.Commands;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Linq;
-
 
 namespace torpedo.ViewModels
 {
-    public class PvPViewModel
+
+    public class PvCViewModel
     {
-
         public string player1Name;
-        public string player2Name;
+        public string player2Name = "AI";
         public string winner;
-
-
-
-
-
 
         private int _p1Hits { get; set; }
         private int _p2Hits { get; set; }
@@ -40,8 +30,7 @@ namespace torpedo.ViewModels
 
         private int currentPlayer = 0;      //0 player1  1 player2
 
-
-        public PvPViewModel()
+        public PvCViewModel()
         {
             for (int i = 0; i < _maxNumberOfShipCoordinates; i++)
             {
@@ -49,29 +38,14 @@ namespace torpedo.ViewModels
                 shipCoordinatesPlayer2[i] = new int[] { -1, -1 };
             }
 
-            //_p2Hits = 100;
+            initializeAI();
 
-            /*
-            shipCoordinatesPlayer1[0] = new int[] { 1, 1 };
-            shipCoordinatesPlayer1[1] = new int[] { 1, 2 };
-            shipCoordinatesPlayer1[2] = new int[] { 1, 3 };
-            shipCoordinatesPlayer1[3] = new int[] { 1, 4 };
-            numberOfP1ShipCoordinates += 4;
-            */
-            /*
-            shipCoordinatesPlayer1[0] = new int[] { 1, 1 };
-            shipCoordinatesPlayer1[1] = new int[] { 1, 2 };
-            shipCoordinatesPlayer1[2] = new int[] { 1, 3 };
-            shipCoordinatesPlayer1[3] = new int[] { 1, 4 };
-            shipCoordinatesPlayer1[4] = new int[] { 1, 5 };
+        }
 
-            shipCoordinatesPlayer2[0] = new int[] { 2, 1 };
-            shipCoordinatesPlayer2[1] = new int[] { 2, 2 };
-            shipCoordinatesPlayer2[2] = new int[] { 2, 3 };
-            shipCoordinatesPlayer2[3] = new int[] { 2, 4 };
-            shipCoordinatesPlayer2[4] = new int[] { 2, 5 };
-            */
-
+        private void initializeAI()
+        {
+            int[,] ship1 = new int[,] { { 0, 0 }, { 1, 0 } };
+            int[,] ship2 = new int[,] { { 0, 0 }, { 1, 0 } };
         }
 
         //saját pályámat vizsgálom, az AI ne ezzel kérdezze le hogy van-e ott találata
@@ -150,95 +124,5 @@ namespace torpedo.ViewModels
             }
         }
 
-        public int getHits(int player)
-        {
-            if (player == 0)
-            {
-                return _p1Hits;
-            }
-            else
-            {
-                return _p2Hits;
-            }
-        }
-
-        public bool isMyTurn(int playerNumber)
-        {
-            return playerNumber == currentPlayer;
-        }
-
-        public int getCurrentPlayer()
-        {
-            return currentPlayer;
-        }
-
-        public bool isUntouchedCoordinate(int x, int y)
-        {
-            if (currentPlayer == 0)
-            {
-                if (wasCoordinateAlreadyAttackedByPlayer1[x, y])
-                {
-                    return false;
-                }
-                return true;
-            }
-            else
-            {
-                if (wasCoordinateAlreadyAttackedByPlayer2[x, y])
-                {
-                    return false;
-                }
-                return true;
-            }
-        }
-
-        public bool isThereAShip(int x, int y)
-        {
-            if (currentPlayer == 0)
-            {
-                currentPlayer = 1;
-                wasCoordinateAlreadyAttackedByPlayer1[x, y] = true;
-                for (int i = 0; i < _maxNumberOfShipCoordinates; i++)
-                {
-                    if (shipCoordinatesPlayer2[i][0] == x && shipCoordinatesPlayer2[i][1] == y)
-                    {
-                        _p1Hits++;
-                        return true;
-                    }
-                }
-
-                return false;
-            }
-            else
-            {
-                currentPlayer = 0;
-                wasCoordinateAlreadyAttackedByPlayer2[x, y] = true;
-                for (int i = 0; i < _maxNumberOfShipCoordinates; i++)
-                {
-                    if (shipCoordinatesPlayer1[i][0] == x && shipCoordinatesPlayer1[i][1] == y)
-                    {
-                        _p2Hits++;
-                        return true;
-                    }
-                }
-
-                return false;
-            }
-        }
-
-        public bool checkIfGameIsOver()
-        {
-            if (_p1Hits >= _maxNumberOfShipCoordinates)
-            {
-                winner = player1Name;
-                return true;
-            }
-            else if (_p2Hits >= _maxNumberOfShipCoordinates)
-            {
-                winner = player2Name;
-                return true;
-            }
-            return false;
-        }
     }
 }
