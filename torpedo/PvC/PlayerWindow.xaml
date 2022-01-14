@@ -6,11 +6,134 @@
         xmlns:local="clr-namespace:torpedo.PvC"
         mc:Ignorable="d"
         Title="PlayerWindow" Height="450" Width="800" KeyDown="onKeyADown">
-    <Window.InputBindings>
-        <KeyBinding Command="ApplicationCommands.Open"
-              Gesture="CTRL+R" />
-    </Window.InputBindings>
-    <Grid KeyDown="onKeyADown">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Name="PlayerAttacks" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="15*"/>
+                </Grid.RowDefinitions>
+                <Grid Name="Columns" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">1</TextBlock>
+                    <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">2</TextBlock>
+                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">3</TextBlock>
+                    <TextBlock Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">4</TextBlock>
+                    <TextBlock Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center">5</TextBlock>
+                    <TextBlock Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center">6</TextBlock>
+                    <TextBlock Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">7</TextBlock>
+                    <TextBlock Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center">8</TextBlock>
+                    <TextBlock Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center">9</TextBlock>
+                    <TextBlock Grid.Column="10" VerticalAlignment="Center" HorizontalAlignment="Center">10</TextBlock>
+
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="9*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">A</TextBlock>
+                        <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">B</TextBlock>
+                        <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">C</TextBlock>
+                        <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">D</TextBlock>
+                        <TextBlock Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center">E</TextBlock>
+                        <TextBlock Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center">F</TextBlock>
+                        <TextBlock Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center">G</TextBlock>
+                        <TextBlock Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Center">H</TextBlock>
+                        <TextBlock Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Center">I</TextBlock>
+                        <TextBlock Grid.Row="9" VerticalAlignment="Center" HorizontalAlignment="Center">J</TextBlock>
+                        <TextBlock Grid.Row="10" VerticalAlignment="Center" HorizontalAlignment="Center">K</TextBlock>
+
+                    </Grid>
+                    <Grid x:Name="Player1Attacks" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="Találatok: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="playerHits" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="Körök száma: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="numberOfTurns" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                <StackPanel Background="white" Orientation="Horizontal">
+                    <TextBlock Text="Ellenfél találatai: " TextWrapping="Wrap" Margin="5"/>
+                    <TextBlock x:Name="enemyHits" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+                
+            </StackPanel>
+
+        </Grid>
 
     </Grid>
 </Window>
