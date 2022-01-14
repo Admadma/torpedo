@@ -140,7 +140,11 @@ namespace torpedo.ViewModels
             }
             else
             {
-
+                for (int i = 0; i < numberOfP2ShipCoordinates; i++)
+                {
+                    tempShips[i][0] = shipCoordinatesPlayer2[i][0];
+                    tempShips[i][1] = shipCoordinatesPlayer2[i][1];
+                }
                 return tempShips;
             }
         }
